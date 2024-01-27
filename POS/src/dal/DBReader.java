@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.Response;
@@ -40,6 +42,10 @@ public class DBReader {
             statement.setString(2, user.getPassword());
             return statement.executeQuery();
         } catch (Exception ex) {
+            try {
+                connection.close();
+            } catch (SQLException ex1) {
+                   }
             responseObj.messagesList.add(new Message(ex.getMessage(), MessageType.Exception));
 
         }

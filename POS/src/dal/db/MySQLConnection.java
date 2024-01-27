@@ -32,6 +32,16 @@ public class MySQLConnection implements IConnection {
         }
         return null;
     }
+      // Example of closing the connection
+    public void closeConnection(Connection connection) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException ex) {
+            
+        }
+    }
 }
 
 

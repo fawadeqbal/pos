@@ -48,6 +48,7 @@ public class DALManager {
         if (responseObj.isSuccessfull()) {
             objMapper.verifyUser(resultSet, user, responseObj);
         }
+        mySQL.closeConnection(connection);
     }
 
     public void addUser(UserDTO userObj, Response responseObj) {
@@ -57,6 +58,7 @@ public class DALManager {
             responseObj.messagesList.add((message));
         } else {
             objAdder.addUser(userObj, connection, responseObj);
+             mySQL.closeConnection(connection);
         }
     }
 

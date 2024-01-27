@@ -10,14 +10,13 @@ public class CommonValidator {
 
     public static void validateUser(UserDTO objUser, Response objResponse) {
         isValidUsername(objUser.getUsername(), objResponse);
-        if(objResponse.isSuccessfull())
         isValidPassword(objUser.getPassword(), objResponse);
     }
 
    
     private static void isValidUsername(String username, Response objResponse) {
         if (username == null || username.length() < 6) {
-            objResponse.messagesList.add(new Message("Email is not valid, provide valid email (standard email abc@xyz.co) with at least 6 characters.", MessageType.Error));
+            objResponse.messagesList.add(new Message("Email is not valid, provide valid username with at least 6 characters.", MessageType.Error));
             return;
         }
     }
