@@ -14,8 +14,6 @@ import model.dto.Response;
  */
 public class POSFactory {
 
-    public static Response getInstanceOfResponse;
-
     public static DALManager getDALManagerInstance() {
         return new DALManager();
     }
