@@ -5,18 +5,24 @@
 package ui;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import controller.POSController;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import model.POSFactory;
+import model.dto.Response;
+import model.dto.UserDTO;
 
 /**
  *
  * @author fawad
  */
 public class LoginUI extends javax.swing.JFrame {
-
+    private POSController controller;
     /**
      * Creates new form LoginUI
      */
     public LoginUI() {
+    this.controller=POSFactory.getInstanceOfPOSController();
         initComponents();
     }
 
@@ -32,9 +38,9 @@ public class LoginUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        handleLogin = new javax.swing.JButton();
+        passwordField = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,7 +51,12 @@ public class LoginUI extends javax.swing.JFrame {
 
         jLabel2.setText("Username");
 
-        jButton1.setText("Login");
+        handleLogin.setText("Login");
+        handleLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                handleLoginActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Password");
 
@@ -60,7 +71,7 @@ public class LoginUI extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(202, 202, 202)
-                        .addComponent(jButton1))
+                        .addComponent(handleLogin))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -69,12 +80,12 @@ public class LoginUI extends javax.swing.JFrame {
                 .addContainerGap(201, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(191, 191, 191))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(246, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(190, 190, 190)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -86,15 +97,15 @@ public class LoginUI extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(53, 53, 53)
-                .addComponent(jButton1)
+                .addComponent(handleLogin)
                 .addGap(55, 55, 55))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(162, 162, 162)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(166, Short.MAX_VALUE)))
         );
 
@@ -112,18 +123,33 @@ public class LoginUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void handleLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleLoginActionPerformed
+        // TODO add your handling code here:
+        UserDTO user=new UserDTO();
+        user.setUsername(usernameField.getText());
+        user.setPassword(passwordField.getText());
+        Response responseObj=POSFactory.getInstanceOfResponse();
+        this.controller.verifyUser(user, responseObj);
+        if(responseObj.isSuccessfull()){
+            JOptionPane.showMessageDialog(null, responseObj.getInfoMessages());
+        }else{
+            JOptionPane.showMessageDialog(null, responseObj.getErrorMessages());
+        
+        }
+    }//GEN-LAST:event_handleLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton handleLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField passwordField;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }

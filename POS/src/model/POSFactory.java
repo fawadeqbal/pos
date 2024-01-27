@@ -4,7 +4,9 @@
  */
 package model;
 
+import controller.POSController;
 import dal.DALManager;
+import model.dto.Response;
 
 /**
  *
@@ -12,8 +14,18 @@ import dal.DALManager;
  */
 public class POSFactory {
 
+    public static Response getInstanceOfResponse;
+
     public static DALManager getDALManagerInstance() {
         return new DALManager();
+    }
+
+    public static POSController getInstanceOfPOSController() {
+        return new POSController();
+    }
+
+    public static Response getInstanceOfResponse() {
+        return new Response();
     }
     
 }

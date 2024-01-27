@@ -5,7 +5,9 @@
 package pos;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import controller.POSController;
 import javax.swing.UIManager;
+import model.POSFactory;
 import ui.LoginUI;
 
 /**
@@ -23,6 +25,7 @@ public class POS {
         } catch (Exception e) {
            
         }
+        POSController controller=POSFactory.getInstanceOfPOSController();
 
         LoginUI loginScreen = new LoginUI();
         loginScreen.setVisible(true); 

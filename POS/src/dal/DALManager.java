@@ -42,7 +42,7 @@ public class DALManager {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             responseObj.messagesList.add((message));
         } else {
-            String query = "SELECT * FROM users WHERE email = ? AND password = ?";
+            String query = "SELECT * FROM users WHERE username = ? AND password = ?";
             resultSet = objReader.getUser(responseObj, user, connection, query);
         }
         if (responseObj.isSuccessfull()) {
