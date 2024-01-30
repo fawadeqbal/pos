@@ -8,7 +8,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 import controller.POSController;
 import javax.swing.UIManager;
 import model.POSFactory;
-import ui.LoginUI;
+import ui.HomeUI;
+import ui.LoginUI1;
 
 /**
  *
@@ -26,9 +27,8 @@ public class POS {
            
         }
         POSController controller=POSFactory.getInstanceOfPOSController();
-
-        LoginUI loginScreen = new LoginUI();
-        loginScreen.setVisible(true); 
+       new LoginUI1().setVisible(true);
+       
     }
     
 }

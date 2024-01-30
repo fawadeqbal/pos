@@ -11,7 +11,7 @@ import model.POSFactory;
 import model.dto.Response;
 import model.dto.UserDTO;
 import model.validators.CommonValidator;
-import ui.LoginUI;
+import ui.LoginUI1;
 
 /**
  *
@@ -64,7 +64,7 @@ public class POSController {
             objApplicationSession = null;
             // Show the LoginUI
             System.out.println("Expired.");
-            new LoginUI().setVisible(true);
+            new LoginUI1().setVisible(true);
         }
     }
 
