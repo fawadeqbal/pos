@@ -7,6 +7,7 @@ package dal;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.dto.CustomerDTO;
 import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.Response;
@@ -47,6 +48,23 @@ public class ObjectMapper {
         }catch (Exception e){
         }
         return userList;
+    }
+
+    ArrayList<CustomerDTO> getCustomers(ResultSet resultSet) {
+        ArrayList<CustomerDTO> customerList = new ArrayList<>();
+        try{
+        while (resultSet.next())
+            {
+                CustomerDTO objCustomer=new CustomerDTO();                
+                objCustomer.setId(resultSet.getInt(1));
+                objCustomer.setName(resultSet.getString(2));
+                objCustomer.setPhoneNumber(resultSet.getString(3));
+                                
+                customerList.add(objCustomer);
+            }
+        }catch (Exception e){
+        }
+        return customerList;
     }
     
   

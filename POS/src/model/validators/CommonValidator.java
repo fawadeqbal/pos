@@ -1,5 +1,6 @@
 package model.validators;
 
+import java.util.ArrayList;
 import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.Response;
@@ -26,5 +27,11 @@ public class CommonValidator {
             objResponse.messagesList.add(new Message("Password is not valid, provide valid password with at least 3 characters.", MessageType.Error));
         }
 
+    }
+
+    public static void validateUsers(ArrayList<UserDTO> users, Response responseObj) {
+        for(UserDTO user:users){
+            validateUser(user,responseObj);
+        }
     }
 }

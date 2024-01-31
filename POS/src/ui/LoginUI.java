@@ -19,12 +19,12 @@ import raven.glasspanepopup.GlassPanePopup;
  *
  * @author fawad
  */
-public class LoginUI1 extends javax.swing.JFrame {
+public class LoginUI extends javax.swing.JFrame {
     private POSController controller;
     /**
      * Creates new form LoginUI
      */
-    public LoginUI1() {
+    public LoginUI() {
     this.controller=POSFactory.getInstanceOfPOSController();
         initComponents();
         this.setLocationRelativeTo(null);
@@ -141,7 +141,7 @@ public class LoginUI1 extends javax.swing.JFrame {
         Response responseObj=POSFactory.getInstanceOfResponse();
         this.controller.verifyUser(user, responseObj);
         if(responseObj.isSuccessfull()){
-            new HomeUI().setVisible(true);
+            new Dashboard(this.controller).setVisible(true);
             this.dispose();
         }else{
             GlassPanePopup.showPopup(new MessageUI(responseObj.getErrorMessages(),MessageType.Error));

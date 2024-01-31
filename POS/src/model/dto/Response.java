@@ -16,7 +16,7 @@ public class Response {
     public boolean hasError() {
         for(Message m : messagesList)
         {
-            if(m.Type == MessageType.Error || m.Type == MessageType.Exception)
+            if(m.type == MessageType.Error || m.type == MessageType.Exception)
                 return true;
         }
         return false;
@@ -28,8 +28,8 @@ public class Response {
         {
            if(sb.length() > 0) 
                sb.append(",\n");
-            if(m.Type == MessageType.Error || m.Type == MessageType.Exception)
-                sb.append(m.Message);
+            if(m.type == MessageType.Error || m.type == MessageType.Exception)
+                sb.append(m.message);
         }
         return sb.toString();
     }
@@ -40,8 +40,8 @@ public class Response {
         {
            if(sb.length() > 0) 
                sb.append(",\n");
-            if(m.Type == MessageType.Information)
-                sb.append(m.Message);
+            if(m.type == MessageType.Information)
+                sb.append(m.message);
         }
         return sb.toString();
     }

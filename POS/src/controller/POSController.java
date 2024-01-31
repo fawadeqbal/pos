@@ -8,10 +8,11 @@ import dal.DALManager;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import model.POSFactory;
+import model.dto.CustomerDTO;
 import model.dto.Response;
 import model.dto.UserDTO;
 import model.validators.CommonValidator;
-import ui.LoginUI1;
+import ui.LoginUI;
 
 /**
  *
@@ -64,14 +65,14 @@ public class POSController {
             objApplicationSession = null;
             // Show the LoginUI
             System.out.println("Expired.");
-            new LoginUI1().setVisible(true);
+            new LoginUI().setVisible(true);
         }
     }
 
     public static boolean isUserLoggedIn() {
         return objApplicationSession != null;
     }
-    
+
     public void verifyUser(UserDTO user, Response responseObj) {
         CommonValidator.validateUser(user, responseObj);
         if (responseObj.isSuccessfull()) {
@@ -91,6 +92,13 @@ public class POSController {
         }
     }
 
+    public void addUsers(ArrayList<UserDTO> users, Response responseObj) {
+        CommonValidator.validateUsers(users, responseObj);
+        if (responseObj.isSuccessfull()) {
+            dalManagerObj.addUsers(users, responseObj);
+        }
+    }
+
     public ArrayList<UserDTO> getUsers(Response response) {
         return dalManagerObj.getUsers(response);
     }
@@ -101,9 +109,31 @@ public class POSController {
 
     public void deleteUser(UserDTO userObj, Response reponseObj) {
         CommonValidator.validateUser(userObj, reponseObj);
-        if(reponseObj.isSuccessfull()){
+        if (reponseObj.isSuccessfull()) {
             dalManagerObj.deleteUser(userObj, reponseObj);
         }
+    }
+
+    public Response saveCustomer(CustomerDTO customer) {
+        Response response = POSFactory.getInstanceOfResponse();
+        dalManagerObj.saveCustomer(customer, response);
+        return response;
+    }
+
+    public ArrayList<CustomerDTO> getCustomers(Response response) {
+        return dalManagerObj.getCustomers(response);
+    }
+
+    public Response deleteCustomer(CustomerDTO customer) {
+        Response response = POSFactory.getInstanceOfResponse();
+        dalManagerObj.deleteCustomer(customer, response);
+        return response;
+    }
+
+    public Response updateCustomer(CustomerDTO customer) {
+       Response response = POSFactory.getInstanceOfResponse();
+        dalManagerObj.updateCustomer(customer, response);
+        return response;
     }
 
 }

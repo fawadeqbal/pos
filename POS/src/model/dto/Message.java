@@ -9,11 +9,11 @@ package model.dto;
  * @author fawad
  */
 public class Message {
-    public String Message;
-    public MessageType Type;
+    public String message;
+    public MessageType type;
 
-    public Message(String errorMessage, MessageType messageType) {
-        this.Message = errorMessage;
-        this.Type = messageType;
+    public Message(String message, MessageType type) {
+        this.message = message;
+        this.type = type;
     }
 }

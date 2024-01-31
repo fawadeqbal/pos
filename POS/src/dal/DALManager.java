@@ -13,6 +13,10 @@ import model.dto.MessageType;
 import model.dto.Response;
 import model.dto.UserDTO;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import model.dto.CustomerDTO;
+
 /**
  *
  * @author fawad
@@ -32,12 +36,13 @@ public class DALManager {
         this.objReader = new DBReader();
         this.objAdder = new ObjectAdder();
         this.objRemover = new ObjectRemover();
-        this.objModifier=new ObjectModifier();
+        this.objModifier = new ObjectModifier();
     }
 
     public void verifyUser(UserDTO user, Response responseObj) {
         Connection connection = mySQL.getConnection();
         ResultSet resultSet = null;
+
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             responseObj.messagesList.add((message));
@@ -53,12 +58,13 @@ public class DALManager {
 
     public void addUser(UserDTO userObj, Response responseObj) {
         Connection connection = mySQL.getConnection();
+
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             responseObj.messagesList.add((message));
         } else {
             objAdder.addUser(userObj, connection, responseObj);
-             mySQL.closeConnection(connection);
+            mySQL.closeConnection(connection);
         }
     }
 
@@ -73,8 +79,8 @@ public class DALManager {
         resultSet = objReader.getRecords(connection, response, query);
         return objMapper.getUsers(resultSet);
     }
-    
-     public void deleteUser(UserDTO userObj, Response responseObj) {
+
+    public void deleteUser(UserDTO userObj, Response responseObj) {
 
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -82,9 +88,11 @@ public class DALManager {
             responseObj.messagesList.add((message));
         } else {
             objRemover.deleteUser(connection, responseObj, userObj);
+            mySQL.closeConnection(connection);
         }
     }
-     public void updatePassword(UserDTO userObj, Response responseObj) {
+
+    public void updatePassword(UserDTO userObj, Response responseObj) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
@@ -95,4 +103,72 @@ public class DALManager {
 
     }
 
+    public void addUsers(ArrayList<UserDTO> users, Response responseObj) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            responseObj.messagesList.add((message));
+        } else {
+            objAdder.addUsers(users, connection, responseObj);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public void deleteUsers(ArrayList<UserDTO> users, Response responseObj) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            responseObj.messagesList.add((message));
+        } else {
+            for (UserDTO user : users) {
+                objRemover.deleteUser(connection, responseObj, user);
+            }
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public void saveCustomer(CustomerDTO customer, Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objAdder.addCustomer(customer, connection, response);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public ArrayList<CustomerDTO> getCustomers(Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        }
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM customers";
+        resultSet = objReader.getRecords(connection, response, query);
+        return objMapper.getCustomers(resultSet);
+    }
+
+    public void deleteCustomer(CustomerDTO customer, Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objRemover.deleteCustomer(connection, response, customer);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public void updateCustomer(CustomerDTO customer, Response response) {
+       Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objModifier.updateCustomer(customer, connection, response);
+            mySQL.closeConnection(connection);
+        }
+    }
 }
