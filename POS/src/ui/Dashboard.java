@@ -201,8 +201,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         menuPanel.setViewportView(jPanel2);
 
-        mainPanel.setLayout(new java.awt.BorderLayout());
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,7 +238,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void supplierBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBtnActionPerformed
         // TODO add your handling code here:
         mainPanel.removeAll();
-        mainPanel.add(new SupplierUI(), BorderLayout.CENTER);
+        mainPanel.add(new SupplierUI(this.controller), BorderLayout.CENTER);
         mainPanel.validate();
     }//GEN-LAST:event_supplierBtnActionPerformed
 

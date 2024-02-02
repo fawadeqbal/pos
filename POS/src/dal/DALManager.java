@@ -16,6 +16,7 @@ import model.dto.UserDTO;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import model.dto.CustomerDTO;
+import model.dto.SupplierDTO;
 
 /**
  *
@@ -170,5 +171,29 @@ public class DALManager {
             objModifier.updateCustomer(customer, connection, response);
             mySQL.closeConnection(connection);
         }
+    }
+
+    public void saveSupplier(SupplierDTO supplier, Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objAdder.addSupplier(supplier, connection, response);
+            mySQL.closeConnection(connection);
+        }
+    
+    }
+
+    public ArrayList<SupplierDTO> getSuppliers(Response res) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            res.messagesList.add((message));
+        }
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM suppliers";
+        resultSet = objReader.getRecords(connection, res, query);
+        return objMapper.getSuppliers(resultSet);
     }
 }

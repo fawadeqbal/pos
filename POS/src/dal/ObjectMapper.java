@@ -11,6 +11,7 @@ import model.dto.CustomerDTO;
 import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.Response;
+import model.dto.SupplierDTO;
 import model.dto.UserDTO;
 /**
  *
@@ -65,6 +66,23 @@ public class ObjectMapper {
         }catch (Exception e){
         }
         return customerList;
+    }
+
+    ArrayList<SupplierDTO> getSuppliers(ResultSet resultSet) {
+       ArrayList<SupplierDTO> supplierList = new ArrayList<>();
+        try{
+        while (resultSet.next())
+            {
+                SupplierDTO supplier=new SupplierDTO();                
+                supplier.setId(resultSet.getInt(1));
+                supplier.setName(resultSet.getString(2));
+                supplier.setPhoneNumber(resultSet.getString(3));
+                                
+                supplierList.add(supplier);
+            }
+        }catch (Exception e){
+        }
+        return supplierList;
     }
     
   

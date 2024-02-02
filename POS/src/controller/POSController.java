@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import model.POSFactory;
 import model.dto.CustomerDTO;
 import model.dto.Response;
+import model.dto.SupplierDTO;
 import model.dto.UserDTO;
 import model.validators.CommonValidator;
 import ui.LoginUI;
@@ -135,5 +136,22 @@ public class POSController {
         dalManagerObj.updateCustomer(customer, response);
         return response;
     }
+    public Response saveSupplier(SupplierDTO supplier) {
+        Response response = POSFactory.getInstanceOfResponse();
+        dalManagerObj.saveSupplier(supplier, response);
+        return response;
+    }
 
+    public Response updateSupplier(SupplierDTO suppier) {
+        
+        return new Response();
+    }
+
+    public Response deleteSupplier(SupplierDTO supplier) {
+        return new Response();
+    }
+
+    public ArrayList<SupplierDTO> getSuppliers(Response res) {
+        return dalManagerObj.getSuppliers(res);
+    }
 }
