@@ -143,12 +143,15 @@ public class POSController {
     }
 
     public Response updateSupplier(SupplierDTO suppier) {
-        
-        return new Response();
+        Response response = POSFactory.getInstanceOfResponse();
+        dalManagerObj.updateSupplier(suppier, response);
+        return response;
     }
 
     public Response deleteSupplier(SupplierDTO supplier) {
-        return new Response();
+       Response response = POSFactory.getInstanceOfResponse();
+        dalManagerObj.deleteSupplier(supplier, response);
+        return response;
     }
 
     public ArrayList<SupplierDTO> getSuppliers(Response res) {

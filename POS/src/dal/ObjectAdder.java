@@ -125,10 +125,10 @@ public class ObjectAdder {
 
             if (rowsAffected > 0) {
                 // Customer added successfully
-                response.messagesList.add(new Message("Customer added successfully.", MessageType.Information));
+                response.messagesList.add(new Message("Supplier added successfully.", MessageType.Information));
             } else {
                 // Failed to add the customer
-                response.messagesList.add(new Message("Failed to add new User.", MessageType.Error));
+                response.messagesList.add(new Message("Failed to add new Supplier.", MessageType.Error));
             }
         } catch (SQLException e) {
             response.messagesList.add(new Message(e.getMessage(), MessageType.Error));

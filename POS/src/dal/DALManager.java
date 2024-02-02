@@ -163,7 +163,7 @@ public class DALManager {
     }
 
     public void updateCustomer(CustomerDTO customer, Response response) {
-       Connection connection = mySQL.getConnection();
+        Connection connection = mySQL.getConnection();
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             response.messagesList.add((message));
@@ -182,7 +182,7 @@ public class DALManager {
             objAdder.addSupplier(supplier, connection, response);
             mySQL.closeConnection(connection);
         }
-    
+
     }
 
     public ArrayList<SupplierDTO> getSuppliers(Response res) {
@@ -196,4 +196,29 @@ public class DALManager {
         resultSet = objReader.getRecords(connection, res, query);
         return objMapper.getSuppliers(resultSet);
     }
+
+    public void updateSupplier(SupplierDTO suppier, Response response) {
+
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objModifier.updateSupplier(suppier, connection, response);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public void deleteSupplier(SupplierDTO supplier, Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objRemover.deleteSupplier(connection, response, supplier);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+   
 }
