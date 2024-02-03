@@ -135,9 +135,11 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void handleLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleLoginActionPerformed
         // TODO add your handling code here:
+       
         UserDTO user=new UserDTO();
         user.setUsername(usernameField.getText());
         user.setPassword(new String(passwordField.getText()));
+
         Response responseObj=POSFactory.getInstanceOfResponse();
         this.controller.verifyUser(user, responseObj);
         if(responseObj.isSuccessfull()){

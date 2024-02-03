@@ -52,76 +52,138 @@ public class CustomersUI extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        nameField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         phoneNoField = new javax.swing.JTextField();
-        searchBtn = new javax.swing.JButton();
-        deleteCustomer = new javax.swing.JButton();
-        saveCustomer = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         updateBtn = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        nameField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        searchId = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        saveCustomer = new javax.swing.JButton();
+        deleteCustomer = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         rSTableMetro1 = new rojerusan.RSTableMetro();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        searchId = new javax.swing.JTextField();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel4.setLayout(new java.awt.GridBagLayout());
+        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel6.setPreferredSize(new java.awt.Dimension(782, 120));
+        jPanel6.setLayout(new java.awt.BorderLayout());
 
-        jLabel3.setText("Name:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 18, 0, 0);
-        jPanel4.add(jLabel3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 115;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(47, 33, 0, 0);
-        jPanel4.add(nameField, gridBagConstraints);
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel4.setText("Phone No:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(29, 18, 0, 0);
-        jPanel4.add(jLabel4, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 115;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 33, 0, 0);
-        jPanel4.add(phoneNoField, gridBagConstraints);
-
-        searchBtn.setText("Search");
-        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+        phoneNoField.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        phoneNoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtnActionPerformed(evt);
+                phoneNoFieldActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipady = 10;
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 76;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(79, 6, 15, 0);
-        jPanel4.add(searchBtn, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(27, 6, 0, 61);
+        jPanel3.add(phoneNoField, gridBagConstraints);
+
+        jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel4.setText("Phone No:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 18, 0, 0);
+        jPanel3.add(jLabel4, gridBagConstraints);
+
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 18, 1, 0);
+        jPanel3.add(updateBtn, gridBagConstraints);
+
+        nameField.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 74;
+        gridBagConstraints.ipady = -8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(31, 18, 0, 0);
+        jPanel3.add(nameField, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel3.setText("Name:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 32, 0, 0);
+        jPanel3.add(jLabel3, gridBagConstraints);
+
+        searchId.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 63;
+        gridBagConstraints.ipady = -6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 6, 0, 0);
+        jPanel3.add(searchId, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel2.setText("Search Id:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 6, 0, 0);
+        jPanel3.add(jLabel2, gridBagConstraints);
+
+        jLabel1.setText("Customer Information");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
+        jPanel3.add(jLabel1, gridBagConstraints);
+
+        saveCustomer.setText("Save");
+        saveCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveCustomerActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 1, 0);
+        jPanel3.add(saveCustomer, gridBagConstraints);
 
         deleteCustomer.setText("Delete");
         deleteCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -132,113 +194,112 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(79, 6, 15, 28);
-        jPanel4.add(deleteCustomer, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(12, 18, 1, 0);
+        jPanel3.add(deleteCustomer, gridBagConstraints);
 
-        saveCustomer.setText("Save");
-        saveCustomer.addActionListener(new java.awt.event.ActionListener() {
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveCustomerActionPerformed(evt);
+                searchBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(79, 20, 15, 0);
-        jPanel4.add(saveCustomer, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 1, 0);
+        jPanel3.add(searchBtn, gridBagConstraints);
 
-        updateBtn.setText("Update");
-        updateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(79, 6, 15, 0);
-        jPanel4.add(updateBtn, gridBagConstraints);
+        jPanel6.add(jPanel3, java.awt.BorderLayout.CENTER);
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 360, 240));
+        add(jPanel6, java.awt.BorderLayout.PAGE_START);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel5.setLayout(new java.awt.BorderLayout());
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
+        rSTableMetro1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Fawad", "12345678"}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id", "Name", "Phone No"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        rSTableMetro1.setToolTipText("");
-        rSTableMetro1.setAltoHead(20);
-        rSTableMetro1.setColorBackgoundHead(new java.awt.Color(255, 255, 255));
-        rSTableMetro1.setColorBordeFilas(new java.awt.Color(204, 204, 204));
-        rSTableMetro1.setColorBordeHead(new java.awt.Color(204, 204, 204));
-        rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        rSTableMetro1.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
-        rSTableMetro1.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
-        rSTableMetro1.setColorForegroundHead(new java.awt.Color(0, 0, 0));
-        rSTableMetro1.setColorSelBackgound(new java.awt.Color(255, 255, 255));
+        ));
         rSTableMetro1.setColorSelForeground(new java.awt.Color(0, 0, 0));
-        rSTableMetro1.setColumnSelectionAllowed(true);
-        rSTableMetro1.setFuenteHead(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jScrollPane1.setViewportView(rSTableMetro1);
-        rSTableMetro1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 390, 330));
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel6.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setText("Customer Information");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 17, 0, 0);
-        jPanel6.add(jLabel1, gridBagConstraints);
-
-        jLabel2.setText("Search ID");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 17, 0, 0);
-        jPanel6.add(jLabel2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 115;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 29, 12, 75);
-        jPanel6.add(searchId, gridBagConstraints);
-
-        add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 80));
+        add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerActionPerformed
+        // TODO add your handling code here:
+        CustomerDTO customer = new CustomerDTO();
+        customer.setId(new Integer(searchId.getText()));
+        Response res = this.controller.deleteCustomer(customer);
+        if (res.isSuccessfull()) {
+            searchId.setText("");
+            nameField.setText("");
+            phoneNoField.setText("");
+            populateData();
+            GlassPanePopup.showPopup(new MessageUI(res.getInfoMessages(), MessageType.Information));
+        } else {
+            GlassPanePopup.showPopup(new MessageUI(res.getErrorMessages(), MessageType.Error));
+
+        }
+    }//GEN-LAST:event_deleteCustomerActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        CustomerDTO customer=new CustomerDTO();
+        customer.setId(Integer.parseInt(searchId.getText()));
+        customer.setName(nameField.getText());
+        customer.setPhoneNumber(phoneNoField.getText());
+        Response response=this.controller.updateCustomer(customer);
+        if (response.isSuccessfull()) {
+            searchId.setText("");
+            nameField.setText("");
+            phoneNoField.setText("");
+            populateData();
+            GlassPanePopup.showPopup(new MessageUI(response.getInfoMessages(), MessageType.Information));
+        } else {
+            GlassPanePopup.showPopup(new MessageUI(response.getErrorMessages(), MessageType.Error));
+
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        String searchIdText = searchId.getText();
+        searchCustomerById(searchIdText);
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void saveCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCustomerActionPerformed
+        // TODO add your handling code here:
+        CustomerDTO customer = new CustomerDTO();
+        customer.setName(nameField.getText());
+        customer.setPhoneNumber(phoneNoField.getText());
+        Response res = this.controller.saveCustomer(customer);
+        if (res.isSuccessfull()) {
+            searchId.setText("");
+            nameField.setText("");
+            phoneNoField.setText("");
+            populateData();
+            GlassPanePopup.showPopup(new MessageUI(res.getInfoMessages(), MessageType.Information));
+        } else {
+            GlassPanePopup.showPopup(new MessageUI(res.getErrorMessages(), MessageType.Error));
+
+        }
+    }//GEN-LAST:event_saveCustomerActionPerformed
+
+    private void phoneNoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneNoFieldActionPerformed
 
     private void handleRowSelection() {
         int rowIndex = rSTableMetro1.getSelectedRow();
@@ -263,23 +324,6 @@ public class CustomersUI extends javax.swing.JPanel {
         }
     }
 
-    private void deleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerActionPerformed
-        // TODO add your handling code here:
-        CustomerDTO customer = new CustomerDTO();
-        customer.setId(new Integer(searchId.getText()));
-        Response res = this.controller.deleteCustomer(customer);
-        if (res.isSuccessfull()) {
-            searchId.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
-            populateData();
-            GlassPanePopup.showPopup(new MessageUI(res.getInfoMessages(), MessageType.Information));
-        } else {
-            GlassPanePopup.showPopup(new MessageUI(res.getErrorMessages(), MessageType.Error));
-
-        }
-    }//GEN-LAST:event_deleteCustomerActionPerformed
-
     public void populateData() {
         Response res = POSFactory.getInstanceOfResponse();
         ArrayList<CustomerDTO> customers = controller.getCustomers(res);
@@ -299,24 +343,6 @@ public class CustomersUI extends javax.swing.JPanel {
         // Set the created model to the rSTableMetro1 table
         rSTableMetro1.setModel(defaultTableModel);
     }
-    private void saveCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCustomerActionPerformed
-        // TODO add your handling code here:
-        CustomerDTO customer = new CustomerDTO();
-        customer.setName(nameField.getText());
-        customer.setPhoneNumber(phoneNoField.getText());
-        Response res = this.controller.saveCustomer(customer);
-        if (res.isSuccessfull()) {
-            searchId.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
-            populateData();
-            GlassPanePopup.showPopup(new MessageUI(res.getInfoMessages(), MessageType.Information));
-        } else {
-            GlassPanePopup.showPopup(new MessageUI(res.getErrorMessages(), MessageType.Error));
-
-        }
-    }//GEN-LAST:event_saveCustomerActionPerformed
-
     private void searchCustomerById(String customerId) {
         DefaultTableModel tableModel = (DefaultTableModel) rSTableMetro1.getModel();
         int rowCount = tableModel.getRowCount();
@@ -337,30 +363,6 @@ public class CustomersUI extends javax.swing.JPanel {
         phoneNoField.setText("");
     }
 
-    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        String searchIdText = searchId.getText();
-        searchCustomerById(searchIdText);
-    }//GEN-LAST:event_searchBtnActionPerformed
-
-    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        // TODO add your handling code here:
-        CustomerDTO customer=new CustomerDTO();
-        customer.setId(Integer.parseInt(searchId.getText()));
-        customer.setName(nameField.getText());
-        customer.setPhoneNumber(phoneNoField.getText());
-        Response response=this.controller.updateCustomer(customer);
-         if (response.isSuccessfull()) {
-            searchId.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
-            populateData();
-            GlassPanePopup.showPopup(new MessageUI(response.getInfoMessages(), MessageType.Information));
-        } else {
-            GlassPanePopup.showPopup(new MessageUI(response.getErrorMessages(), MessageType.Error));
-
-        }
-    }//GEN-LAST:event_updateBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteCustomer;
@@ -368,8 +370,9 @@ public class CustomersUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameField;
