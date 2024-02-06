@@ -2,11 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package controller;
 
+import controller.IPOSController;
 import dal.DALManager;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import model.ApplicationSession;
+import model.POSFactory;
 import model.POSFactory;
 import model.dto.CustomerDTO;
 import model.dto.Response;
@@ -19,7 +22,7 @@ import ui.LoginUI;
  *
  * @author fawad
  */
-public class POSController {
+public class POSController implements IPOSController {
 
     public static ApplicationSession objApplicationSession;
     private DALManager dalManagerObj;
@@ -74,6 +77,7 @@ public class POSController {
         return objApplicationSession != null;
     }
 
+    @Override
     public void verifyUser(UserDTO user, Response responseObj) {
         CommonValidator.validateUser(user, responseObj);
         if (responseObj.isSuccessfull()) {
@@ -86,6 +90,7 @@ public class POSController {
 
     }
 
+    @Override
     public void addUser(UserDTO userObj, Response responseObj) {
         CommonValidator.validateUser(userObj, responseObj);
         if (responseObj.isSuccessfull()) {
@@ -93,6 +98,7 @@ public class POSController {
         }
     }
 
+    @Override
     public void addUsers(ArrayList<UserDTO> users, Response responseObj) {
         CommonValidator.validateUsers(users, responseObj);
         if (responseObj.isSuccessfull()) {
@@ -100,14 +106,17 @@ public class POSController {
         }
     }
 
+    @Override
     public ArrayList<UserDTO> getUsers(Response response) {
         return dalManagerObj.getUsers(response);
     }
 
+    @Override
     public void updatePassword(UserDTO userObj, Response responseObj) {
         dalManagerObj.updatePassword(userObj, responseObj);
     }
 
+    @Override
     public void deleteUser(UserDTO userObj, Response reponseObj) {
         CommonValidator.validateUser(userObj, reponseObj);
         if (reponseObj.isSuccessfull()) {
@@ -115,45 +124,53 @@ public class POSController {
         }
     }
 
+    @Override
     public Response saveCustomer(CustomerDTO customer) {
         Response response = POSFactory.getInstanceOfResponse();
         dalManagerObj.saveCustomer(customer, response);
         return response;
     }
 
+    @Override
     public ArrayList<CustomerDTO> getCustomers(Response response) {
         return dalManagerObj.getCustomers(response);
     }
 
+    @Override
     public Response deleteCustomer(CustomerDTO customer) {
         Response response = POSFactory.getInstanceOfResponse();
         dalManagerObj.deleteCustomer(customer, response);
         return response;
     }
 
+    @Override
     public Response updateCustomer(CustomerDTO customer) {
        Response response = POSFactory.getInstanceOfResponse();
         dalManagerObj.updateCustomer(customer, response);
         return response;
     }
+    @Override
     public Response saveSupplier(SupplierDTO supplier) {
         Response response = POSFactory.getInstanceOfResponse();
         dalManagerObj.saveSupplier(supplier, response);
         return response;
     }
 
+    @Override
     public Response updateSupplier(SupplierDTO suppier) {
         Response response = POSFactory.getInstanceOfResponse();
         dalManagerObj.updateSupplier(suppier, response);
         return response;
     }
 
+    @Override
     public Response deleteSupplier(SupplierDTO supplier) {
        Response response = POSFactory.getInstanceOfResponse();
         dalManagerObj.deleteSupplier(supplier, response);
         return response;
     }
 
+    @Override
     public ArrayList<SupplierDTO> getSuppliers(Response res) {
         return dalManagerObj.getSuppliers(res);
     }

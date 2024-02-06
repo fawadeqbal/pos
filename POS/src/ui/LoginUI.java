@@ -4,7 +4,7 @@
  */
 package ui;
 
-import model.POSController;
+import controller.POSController;
 import model.POSFactory;
 import model.dto.MessageType;
 import model.dto.Response;

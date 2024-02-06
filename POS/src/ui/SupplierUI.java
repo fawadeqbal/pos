@@ -4,7 +4,7 @@
  */
 package ui;
 
-import model.POSController;
+import controller.POSController;
 import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;

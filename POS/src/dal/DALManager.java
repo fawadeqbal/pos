@@ -17,7 +17,7 @@ import model.dto.SupplierDTO;
  *
  * @author fawad
  */
-public class DALManager {
+public class DALManager implements IDALManager {
 
     private MySQLConnection mySQL;
     private ObjectMapper objMapper;
@@ -35,6 +35,7 @@ public class DALManager {
         this.objModifier = POSFactory.getInstanceOfObjectModifier();
     }
 
+    @Override
     public void verifyUser(UserDTO user, Response responseObj) {
         Connection connection = mySQL.getConnection();
         ResultSet resultSet = null;
@@ -52,6 +53,7 @@ public class DALManager {
         mySQL.closeConnection(connection);
     }
 
+    @Override
     public void addUser(UserDTO userObj, Response responseObj) {
         Connection connection = mySQL.getConnection();
 
@@ -64,6 +66,7 @@ public class DALManager {
         }
     }
 
+    @Override
     public ArrayList<UserDTO> getUsers(Response response) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -76,6 +79,7 @@ public class DALManager {
         return objMapper.getUsers(resultSet);
     }
 
+    @Override
     public void deleteUser(UserDTO userObj, Response responseObj) {
 
         Connection connection = mySQL.getConnection();
@@ -88,6 +92,7 @@ public class DALManager {
         }
     }
 
+    @Override
     public void updatePassword(UserDTO userObj, Response responseObj) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -99,6 +104,7 @@ public class DALManager {
 
     }
 
+    @Override
     public void addUsers(ArrayList<UserDTO> users, Response responseObj) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -110,6 +116,7 @@ public class DALManager {
         }
     }
 
+    @Override
     public void deleteUsers(ArrayList<UserDTO> users, Response responseObj) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -123,6 +130,7 @@ public class DALManager {
         }
     }
 
+    @Override
     public void saveCustomer(CustomerDTO customer, Response response) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -134,6 +142,7 @@ public class DALManager {
         }
     }
 
+    @Override
     public ArrayList<CustomerDTO> getCustomers(Response response) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -146,6 +155,7 @@ public class DALManager {
         return objMapper.getCustomers(resultSet);
     }
 
+    @Override
     public void deleteCustomer(CustomerDTO customer, Response response) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -157,6 +167,7 @@ public class DALManager {
         }
     }
 
+    @Override
     public void updateCustomer(CustomerDTO customer, Response response) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -168,6 +179,7 @@ public class DALManager {
         }
     }
 
+    @Override
     public void saveSupplier(SupplierDTO supplier, Response response) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -180,6 +192,7 @@ public class DALManager {
 
     }
 
+    @Override
     public ArrayList<SupplierDTO> getSuppliers(Response res) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {
@@ -192,6 +205,7 @@ public class DALManager {
         return objMapper.getSuppliers(resultSet);
     }
 
+    @Override
     public void updateSupplier(SupplierDTO suppier, Response response) {
 
         Connection connection = mySQL.getConnection();
@@ -204,6 +218,7 @@ public class DALManager {
         }
     }
 
+    @Override
     public void deleteSupplier(SupplierDTO supplier, Response response) {
         Connection connection = mySQL.getConnection();
         if (connection == null) {

@@ -5,7 +5,7 @@
 package ui.extra;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import model.POSController;
+import controller.POSController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
