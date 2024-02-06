@@ -34,7 +34,7 @@ public class DALManager implements IDALManager {
         this.objRemover = POSFactory.getInstanceOfObjectRemover();
         this.objModifier = POSFactory.getInstanceOfObjectModifier();
     }
-
+    
     @Override
     public void verifyUser(UserDTO user, Response responseObj) {
         Connection connection = mySQL.getConnection();
