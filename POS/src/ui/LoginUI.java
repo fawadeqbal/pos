@@ -4,12 +4,8 @@
  */
 package ui;
 
-import com.formdev.flatlaf.FlatLightLaf;
-import controller.POSController;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+import model.POSController;
 import model.POSFactory;
-import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.Response;
 import model.dto.UserDTO;

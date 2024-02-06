@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package dal;
 
 import dal.db.MySQLConnection;
@@ -12,9 +9,7 @@ import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.Response;
 import model.dto.UserDTO;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import model.POSFactory;
 import model.dto.CustomerDTO;
 import model.dto.SupplierDTO;
 
@@ -33,11 +28,11 @@ public class DALManager {
 
     public DALManager() {
         this.mySQL = new MySQLConnection("jdbc:mysql://localhost:3306/pos", "root", "Admin123$");
-        this.objMapper = new ObjectMapper();
-        this.objReader = new DBReader();
-        this.objAdder = new ObjectAdder();
-        this.objRemover = new ObjectRemover();
-        this.objModifier = new ObjectModifier();
+        this.objMapper = POSFactory.getInstanceOfObjectMapper();
+        this.objReader = POSFactory.getInstanceOfDBReader();
+        this.objAdder = POSFactory.getInstanceOfObjectAdder();
+        this.objRemover = POSFactory.getInstanceOfObjectRemover();
+        this.objModifier = POSFactory.getInstanceOfObjectModifier();
     }
 
     public void verifyUser(UserDTO user, Response responseObj) {
@@ -220,5 +215,4 @@ public class DALManager {
         }
     }
 
-   
 }

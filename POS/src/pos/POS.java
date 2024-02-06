@@ -5,10 +5,9 @@
 package pos;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import controller.POSController;
+import model.POSController;
 import javax.swing.UIManager;
 import model.POSFactory;
-import extra.HomeUI;
 import ui.LoginUI;
 
 /**

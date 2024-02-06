@@ -1,12 +1,8 @@
 package ui;
 
-import com.formdev.flatlaf.FlatLightLaf;
-import controller.POSController;
+import model.POSController;
 import java.awt.BorderLayout;
 
-import javax.swing.UIManager;
-import model.dto.CustomerDTO;
-import model.dto.Response;
 import raven.glasspanepopup.GlassPanePopup;
 
 /**

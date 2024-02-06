@@ -4,8 +4,7 @@
  */
 package model;
 
-import controller.POSController;
-import dal.DALManager;
+import dal.*;
 import model.dto.Response;
 
 /**
@@ -25,5 +24,23 @@ public class POSFactory {
     public static Response getInstanceOfResponse() {
         return new Response();
     }
-    
+
+    public static ObjectMapper getInstanceOfObjectMapper() {
+        return new ObjectMapper();
+    }
+
+    public static ObjectAdder getInstanceOfObjectAdder() {
+        return new ObjectAdder();
+    }
+
+    public static ObjectModifier getInstanceOfObjectModifier() {
+        return new ObjectModifier();
+    }
+
+    public static ObjectRemover getInstanceOfObjectRemover() {
+        return new ObjectRemover();
+    }
+    public static DBReader getInstanceOfDBReader() {
+        return new DBReader();
+    }
 }

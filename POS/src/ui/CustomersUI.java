@@ -4,7 +4,7 @@
  */
 package ui;
 
-import controller.POSController;
+import model.POSController;
 import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -52,7 +52,6 @@ public class CustomersUI extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         phoneNoField = new javax.swing.JTextField();
@@ -90,7 +89,7 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 76;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(27, 6, 0, 61);
         jPanel3.add(phoneNoField, gridBagConstraints);
 
@@ -101,7 +100,7 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(30, 18, 0, 0);
         jPanel3.add(jLabel4, gridBagConstraints);
 
@@ -126,7 +125,6 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 74;
         gridBagConstraints.ipady = -8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(31, 18, 0, 0);
         jPanel3.add(nameField, gridBagConstraints);
 
@@ -136,7 +134,6 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 32, 0, 0);
         jPanel3.add(jLabel3, gridBagConstraints);
 
@@ -148,7 +145,7 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 63;
         gridBagConstraints.ipady = -6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 6, 0, 0);
         jPanel3.add(searchId, gridBagConstraints);
 
@@ -159,7 +156,7 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 6, 0, 0);
         jPanel3.add(jLabel2, gridBagConstraints);
 
@@ -370,7 +367,6 @@ public class CustomersUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
