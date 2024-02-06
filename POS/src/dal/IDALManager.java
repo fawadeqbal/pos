@@ -15,6 +15,8 @@ import model.dto.UserDTO;
  * @author fawad
  */
 public interface IDALManager {
+    
+     //user methods
 
     void addUser(UserDTO userObj, Response responseObj);
     
@@ -30,6 +32,8 @@ public interface IDALManager {
     
     void addUsers(ArrayList<UserDTO> users, Response responseObj);
     
+    //customer methods
+    
     void saveCustomer(CustomerDTO customer, Response response);
     
     void updateCustomer(CustomerDTO customer, Response response);
@@ -37,6 +41,8 @@ public interface IDALManager {
     void deleteCustomer(CustomerDTO customer, Response response);
     
     ArrayList<CustomerDTO> getCustomers(Response response);
+    
+     //supplier methods
 
     void saveSupplier(SupplierDTO supplier, Response response);
 

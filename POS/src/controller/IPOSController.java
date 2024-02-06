@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package controller;
 
 import java.util.ArrayList;
@@ -17,31 +14,31 @@ import model.dto.UserDTO;
 public interface IPOSController {
 
     void addUser(UserDTO userObj, Response responseObj);
-
-    void addUsers(ArrayList<UserDTO> users, Response responseObj);
-
-    Response deleteCustomer(CustomerDTO customer);
-
-    Response deleteSupplier(SupplierDTO supplier);
-
+    
+    void verifyUser(UserDTO user, Response responseObj);
+    
+    void updatePassword(UserDTO userObj, Response responseObj);
+    
     void deleteUser(UserDTO userObj, Response reponseObj);
 
-    ArrayList<CustomerDTO> getCustomers(Response response);
-
-    ArrayList<SupplierDTO> getSuppliers(Response res);
-
+    void addUsers(ArrayList<UserDTO> users, Response responseObj);
+    
     ArrayList<UserDTO> getUsers(Response response);
 
     Response saveCustomer(CustomerDTO customer);
-
-    Response saveSupplier(SupplierDTO supplier);
-
+    
     Response updateCustomer(CustomerDTO customer);
-
-    void updatePassword(UserDTO userObj, Response responseObj);
-
+    
+    ArrayList<CustomerDTO> getCustomers(Response response);
+       
+    Response deleteCustomer(CustomerDTO customer);
+    
+    Response saveSupplier(SupplierDTO supplier);
+    
     Response updateSupplier(SupplierDTO suppier);
 
-    void verifyUser(UserDTO user, Response responseObj);
+    Response deleteSupplier(SupplierDTO supplier);
+    
+    ArrayList<SupplierDTO> getSuppliers(Response res);
     
 }
