@@ -4,6 +4,7 @@
  */
 package ui;
 
+import common.CommonHandler;
 import controller.POSController;
 import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
@@ -276,8 +277,12 @@ public class CustomersUI extends javax.swing.JPanel {
         searchCustomerById(searchIdText);
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void saveCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCustomerActionPerformed
+    private void phoneNoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoFieldActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_phoneNoFieldActionPerformed
+
+    private void saveCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCustomerActionPerformed
+   // TODO add your handling code here:
         CustomerDTO customer = new CustomerDTO();
         customer.setName(nameField.getText());
         customer.setPhoneNumber(phoneNoField.getText());
@@ -287,16 +292,9 @@ public class CustomersUI extends javax.swing.JPanel {
             nameField.setText("");
             phoneNoField.setText("");
             populateData();
-            GlassPanePopup.showPopup(new MessageUI(res.getInfoMessages(), MessageType.Information));
-        } else {
-            GlassPanePopup.showPopup(new MessageUI(res.getErrorMessages(), MessageType.Error));
-
-        }
+            }
+        CommonHandler.handleResponse(res);
     }//GEN-LAST:event_saveCustomerActionPerformed
-
-    private void phoneNoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNoFieldActionPerformed
 
     private void handleRowSelection() {
         int rowIndex = rSTableMetro1.getSelectedRow();
@@ -324,20 +322,12 @@ public class CustomersUI extends javax.swing.JPanel {
     public void populateData() {
         Response res = POSFactory.getInstanceOfResponse();
         ArrayList<CustomerDTO> customers = controller.getCustomers(res);
-
-        // Define column names
         String[] columnNames = {"Id", "Name", "Phone No"};
-
-        // Create DefaultTableModel with specified column names
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
-
-        // Iterate through the ArrayList and add data to the table model
         for (CustomerDTO customer : customers) {
             Object[] rowData = {customer.getId(), customer.getName(), customer.getPhoneNumber()};
             defaultTableModel.addRow(rowData);
         }
-
-        // Set the created model to the rSTableMetro1 table
         rSTableMetro1.setModel(defaultTableModel);
     }
     private void searchCustomerById(String customerId) {
@@ -346,15 +336,12 @@ public class CustomersUI extends javax.swing.JPanel {
 
         for (int i = 0; i < rowCount; i++) {
             Object cellValue = tableModel.getValueAt(i, 0);
-
             if (cellValue != null && cellValue.toString().equals(customerId)) {
                 nameField.setText((String) tableModel.getValueAt(i, 1));
-                // You may also want to set the phoneNoField based on the found row
                 phoneNoField.setText((String) tableModel.getValueAt(i, 2));
                 return;
             }
         }
-
         // If the customer with the specified ID is not found
         nameField.setText("");
         phoneNoField.setText("");
