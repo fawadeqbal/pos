@@ -4,6 +4,7 @@ package controller;
 import java.util.ArrayList;
 import model.dto.CustomerDTO;
 import model.dto.EmployeeDTO;
+import model.dto.ProductDTO;
 import model.dto.Response;
 import model.dto.SupplierDTO;
 import model.dto.UserDTO;
@@ -14,40 +15,47 @@ import model.dto.UserDTO;
  */
 public interface IPOSController {
 
-    void addUser(UserDTO userObj, Response responseObj);
+    public void addUser(UserDTO userObj, Response responseObj);
     
-    void verifyUser(UserDTO user, Response responseObj);
+   public void verifyUser(UserDTO user, Response responseObj);
     
-    void updatePassword(UserDTO userObj, Response responseObj);
+   public void updatePassword(UserDTO userObj, Response responseObj);
     
-    void deleteUser(UserDTO userObj, Response reponseObj);
+    public void deleteUser(UserDTO userObj, Response reponseObj);
 
-    void addUsers(ArrayList<UserDTO> users, Response responseObj);
+    public void addUsers(ArrayList<UserDTO> users, Response responseObj);
     
-    ArrayList<UserDTO> getUsers(Response response);
+    public ArrayList<UserDTO> getUsers(Response response);
 
-    Response saveCustomer(CustomerDTO customer);
+    public Response saveCustomer(CustomerDTO customer);
     
-    Response updateCustomer(CustomerDTO customer);
+    public Response updateCustomer(CustomerDTO customer);
     
-    ArrayList<CustomerDTO> getCustomers(Response response);
+    public ArrayList<CustomerDTO> getCustomers(Response response);
        
-    Response deleteCustomer(CustomerDTO customer);
+    public Response deleteCustomer(CustomerDTO customer);
     
-    Response saveSupplier(SupplierDTO supplier);
+    public Response saveSupplier(SupplierDTO supplier);
     
-    Response updateSupplier(SupplierDTO suppier);
+    public Response updateSupplier(SupplierDTO suppier);
 
-    Response deleteSupplier(SupplierDTO supplier);
+    public Response deleteSupplier(SupplierDTO supplier);
     
-    ArrayList<SupplierDTO> getSuppliers(Response res);
+    public ArrayList<SupplierDTO> getSuppliers(Response res);
     
-     Response saveEmployee(EmployeeDTO employee);
+    public Response saveEmployee(EmployeeDTO employee);
     
-    Response updateEmployee(EmployeeDTO employee);
+    public Response updateEmployee(EmployeeDTO employee);
 
-    Response deleteEmployee(EmployeeDTO employee);
+    public Response deleteEmployee(EmployeeDTO employee);
     
-    ArrayList<EmployeeDTO> getEmployees(Response res);
+    public ArrayList<EmployeeDTO> getEmployees(Response res);
     
+    public Response addProduct(ProductDTO product);
+    
+    public Response deleteProduct(ProductDTO product);
+    
+    public Response updateProduct(ProductDTO product);
+    
+    ArrayList<ProductDTO> getProducts(Response response);
 }

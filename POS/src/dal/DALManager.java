@@ -1,4 +1,3 @@
-
 package dal;
 
 import dal.db.MySQLConnection;
@@ -12,6 +11,7 @@ import model.dto.UserDTO;
 import model.POSFactory;
 import model.dto.CustomerDTO;
 import model.dto.EmployeeDTO;
+import model.dto.ProductDTO;
 import model.dto.SupplierDTO;
 
 /**
@@ -35,7 +35,7 @@ public class DALManager implements IDALManager {
         this.objRemover = POSFactory.getInstanceOfObjectRemover();
         this.objModifier = POSFactory.getInstanceOfObjectModifier();
     }
-    
+
     @Override
     public void verifyUser(UserDTO user, Response responseObj) {
         Connection connection = mySQL.getConnection();
@@ -232,7 +232,7 @@ public class DALManager implements IDALManager {
     }
 
     public ArrayList<EmployeeDTO> getEmployees(Response res) {
-    Connection connection = mySQL.getConnection();
+        Connection connection = mySQL.getConnection();
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             res.messagesList.add((message));
@@ -240,8 +240,8 @@ public class DALManager implements IDALManager {
         ResultSet resultSet = null;
         String query = "SELECT * FROM employees";
         resultSet = objReader.getRecords(connection, res, query);
-        return objMapper.getEmployees(resultSet);    
-    
+        return objMapper.getEmployees(resultSet);
+
     }
 
     public void deleteEmployee(EmployeeDTO employee, Response response) {
@@ -256,7 +256,7 @@ public class DALManager implements IDALManager {
     }
 
     public void saveEmployee(EmployeeDTO employee, Response response) {
-         Connection connection = mySQL.getConnection();
+        Connection connection = mySQL.getConnection();
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             response.messagesList.add((message));
@@ -264,6 +264,51 @@ public class DALManager implements IDALManager {
             objAdder.saveEmployee(employee, connection, response);
             mySQL.closeConnection(connection);
         }
+    }
+
+    public void addProduct(ProductDTO product, Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objAdder.addProduct(product, connection, response);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public void deleteProduct(ProductDTO product, Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objRemover.deleteProduct(product, connection, response);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public void updateProduct(ProductDTO product, Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objModifier.updateProduct(product, connection, response);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public ArrayList<ProductDTO> getProducts(Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        }
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM products";
+        resultSet = objReader.getRecords(connection, response, query);
+        return objMapper.getProducts(resultSet);
     }
 
 }

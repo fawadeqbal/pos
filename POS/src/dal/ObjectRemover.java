@@ -7,6 +7,7 @@ import model.dto.CustomerDTO;
 import model.dto.EmployeeDTO;
 import model.dto.Message;
 import model.dto.MessageType;
+import model.dto.ProductDTO;
 import model.dto.Response;
 import model.dto.SupplierDTO;
 import model.dto.UserDTO;
@@ -116,5 +117,9 @@ public class ObjectRemover {
                 }
             }
         }
+    }
+
+    void deleteProduct(ProductDTO product, Connection connection, Response response) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

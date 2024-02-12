@@ -83,7 +83,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         supplierBtn.setBackground(new java.awt.Color(255, 0, 51));
         supplierBtn.setForeground(new java.awt.Color(255, 255, 255));
+        supplierBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit_property_24px.png"))); // NOI18N
         supplierBtn.setText("Supplier");
+        supplierBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         supplierBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supplierBtnActionPerformed(evt);
@@ -92,7 +94,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         employeeBtn.setBackground(new java.awt.Color(255, 0, 51));
         employeeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        employeeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/google_forms_24px.png"))); // NOI18N
         employeeBtn.setText("Employees");
+        employeeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         employeeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 employeeBtnActionPerformed(evt);
@@ -101,7 +105,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         productBtn.setBackground(new java.awt.Color(255, 0, 51));
         productBtn.setForeground(new java.awt.Color(255, 255, 255));
+        productBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit_property_24px.png"))); // NOI18N
         productBtn.setText("Products");
+        productBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         productBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productBtnActionPerformed(evt);
@@ -110,7 +116,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         customerBtn.setBackground(new java.awt.Color(255, 0, 51));
         customerBtn.setForeground(new java.awt.Color(255, 255, 255));
+        customerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_user_group_woman_man_24px.png"))); // NOI18N
         customerBtn.setText("Customers");
+        customerBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         customerBtn.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 customerBtnFocusGained(evt);
@@ -125,9 +133,10 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        lastButton.setBackground(new java.awt.Color(102, 0, 0));
+        lastButton.setBackground(new java.awt.Color(255, 0, 51));
         lastButton.setForeground(new java.awt.Color(255, 255, 255));
         lastButton.setText("Logout");
+        lastButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lastButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lastButtonActionPerformed(evt);
@@ -137,6 +146,7 @@ public class Dashboard extends javax.swing.JFrame {
         reportsBtn.setBackground(new java.awt.Color(255, 0, 51));
         reportsBtn.setForeground(new java.awt.Color(255, 255, 255));
         reportsBtn.setText("Reports");
+        reportsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         reportsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reportsBtnActionPerformed(evt);
@@ -145,7 +155,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         invoiceBtn.setBackground(new java.awt.Color(255, 0, 51));
         invoiceBtn.setForeground(new java.awt.Color(255, 255, 255));
+        invoiceBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/categorize_24px.png"))); // NOI18N
         invoiceBtn.setText("Invoice");
+        invoiceBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         invoiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 invoiceBtnActionPerformed(evt);
@@ -155,6 +167,7 @@ public class Dashboard extends javax.swing.JFrame {
         saleBtn.setBackground(new java.awt.Color(255, 0, 51));
         saleBtn.setForeground(new java.awt.Color(255, 255, 255));
         saleBtn.setText("Sales");
+        saleBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saleBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saleBtnActionPerformed(evt);
@@ -255,7 +268,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void productBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productBtnActionPerformed
         // TODO add your handling code here:
         mainPanel.removeAll();
-        mainPanel.add(new ProductUI(), BorderLayout.CENTER);
+        mainPanel.add(new ProductUI(this.controller), BorderLayout.CENTER);
         mainPanel.validate();
     }//GEN-LAST:event_productBtnActionPerformed
 

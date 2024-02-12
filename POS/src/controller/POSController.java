@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controller;
 
 import dal.DALManager;
@@ -16,6 +13,8 @@ import model.dto.UserDTO;
 import model.validators.CommonValidator;
 import ui.LoginUI;
 import model.dto.EmployeeDTO;
+import model.dto.ProductDTO;
+
 /**
  *
  * @author fawad
@@ -122,7 +121,7 @@ public class POSController implements IPOSController {
 
     @Override
     public Response saveCustomer(CustomerDTO customer) {
-       
+
         Response response = POSFactory.getInstanceOfResponse();
         CommonValidator.validateObject(customer, response);
         if (response.isSuccessfull()) {
@@ -181,20 +180,20 @@ public class POSController implements IPOSController {
 
     @Override
     public Response saveEmployee(EmployeeDTO employee) {
-      Response response = POSFactory.getInstanceOfResponse();
+        Response response = POSFactory.getInstanceOfResponse();
         CommonValidator.validateObject(employee, response);
         if (response.isSuccessfull()) {
             dalManagerObj.saveEmployee(employee, response);
         }
         return response;
-        
+
     }
 
     @Override
     public Response updateEmployee(EmployeeDTO employee) {
-        
+
         return null;
-        
+
     }
 
     @Override
@@ -202,13 +201,49 @@ public class POSController implements IPOSController {
         Response response = POSFactory.getInstanceOfResponse();
         dalManagerObj.deleteEmployee(employee, response);
         return response;
-       
+
     }
 
     @Override
     public ArrayList<EmployeeDTO> getEmployees(Response res) {
-        
-       return dalManagerObj.getEmployees(res);
-        
+
+        return dalManagerObj.getEmployees(res);
+
     }
+
+    @Override
+    public Response addProduct(ProductDTO product) {
+        Response response = POSFactory.getInstanceOfResponse();
+        CommonValidator.validateObject(product, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.addProduct(product, response);
+        }
+        return response;
+    }
+
+    @Override
+    public Response deleteProduct(ProductDTO product) {
+        Response response = POSFactory.getInstanceOfResponse();
+        CommonValidator.validateObject(product, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.deleteProduct(product, response);
+        }
+        return response;
+    }
+
+    @Override
+    public Response updateProduct(ProductDTO product) {
+        Response response = POSFactory.getInstanceOfResponse();
+        CommonValidator.validateObject(product, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.updateProduct(product, response);
+        }
+        return response;
+    }
+
+    @Override
+    public ArrayList<ProductDTO> getProducts(Response response) {
+        return dalManagerObj.getProducts(response);
+    }
+
 }

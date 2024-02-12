@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import model.dto.CustomerDTO;
 import model.dto.Message;
 import model.dto.MessageType;
+import model.dto.ProductDTO;
 import model.dto.SupplierDTO;
 
 /**
@@ -99,6 +100,10 @@ public class ObjectModifier {
             // Handle any SQL errors
             responseObj.messagesList.add(new Message(e.getMessage(), MessageType.Error));
         }
+    }
+
+    void updateProduct(ProductDTO product, Connection connection, Response response) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
