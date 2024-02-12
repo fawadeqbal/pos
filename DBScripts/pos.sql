@@ -47,6 +47,30 @@ INSERT INTO `cart` VALUES (1,1,'pen','100200','3','10','30.0'),(2,1,'pen','10020
 UNLOCK TABLES;
 
 --
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'grocery');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `customers`
 --
 
@@ -83,7 +107,7 @@ CREATE TABLE `employees` (
   `name` varchar(50) NOT NULL,
   `phoneNumber` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +116,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'emp test','111-222'),(2,'andy gray','978-45'),(3,'chelcy','45-56'),(5,'Fawad Iqbal','1234567890'),(6,'','');
+INSERT INTO `employees` VALUES (1,'emp test','111-222'),(2,'andy gray','978-45'),(3,'chelcy','45-56'),(5,'Fawad Iqbal','1234567890');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,31 +145,36 @@ INSERT INTO `extra` VALUES (1,'10');
 UNLOCK TABLES;
 
 --
--- Table structure for table `product`
+-- Table structure for table `products`
 --
 
-DROP TABLE IF EXISTS `product`;
+DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `product` (
-  `pid` int NOT NULL AUTO_INCREMENT,
-  `Product_Name` varchar(50) NOT NULL,
-  `Bar_code` varchar(20) NOT NULL,
-  `Price` varchar(10) NOT NULL,
-  `Qty` varchar(10) NOT NULL,
-  `Sid` int NOT NULL,
-  PRIMARY KEY (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+CREATE TABLE `products` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `barcode` varchar(50) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `stock_quantity` decimal(10,2) NOT NULL,
+  `category_id` int DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `quantity_type` enum('weighted','counted') NOT NULL DEFAULT 'counted',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `barcode` (`barcode`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `product`
+-- Dumping data for table `products`
 --
 
-LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'mini book ','100100','200','10',2),(2,'pen','100200','100','8',1),(3,'box','100500','50','12',3),(4,'Mouse','12354','13','3',2),(5,'keyboard','123546','18','30',3);
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -237,4 +266,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-12 14:20:49
+-- Dump completed on 2024-02-12 20:12:46
