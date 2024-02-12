@@ -20,6 +20,7 @@ import model.dto.SupplierDTO;
  */
 public class ObjectModifier {
 
+    
     public void updatePassword(UserDTO userObj, Connection connection, Response responseObj) {
         try {
             // Prepare the SQL query

@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package dal;
 
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.dto.CustomerDTO;
+import model.dto.EmployeeDTO;
 import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.Response;
@@ -83,6 +81,23 @@ public class ObjectMapper {
         }catch (Exception e){
         }
         return supplierList;
+    }
+
+    ArrayList<EmployeeDTO> getEmployees(ResultSet resultSet) {
+    ArrayList<EmployeeDTO> empList = new ArrayList<>();
+        try{
+        while (resultSet.next())
+            {
+                EmployeeDTO emp=new EmployeeDTO();                
+                emp.setId(resultSet.getInt(1));
+                emp.setName(resultSet.getString(2));
+                emp.setPhoneNumber(resultSet.getString(3));
+                                
+                empList.add(emp);
+            }
+        }catch (Exception e){
+        }
+        return empList;  
     }
     
   

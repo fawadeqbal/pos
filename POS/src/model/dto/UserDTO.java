@@ -1,10 +1,12 @@
 package model.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author fawad
  */
-public class UserDTO {
+public class UserDTO implements Serializable {
 
     private String username;
     private String password;
@@ -40,6 +42,11 @@ public class UserDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" + "username=" + username + ", password=" + password + ", role=" + role + '}';
     }
 
 }

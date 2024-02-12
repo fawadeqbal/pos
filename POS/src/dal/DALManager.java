@@ -11,6 +11,7 @@ import model.dto.Response;
 import model.dto.UserDTO;
 import model.POSFactory;
 import model.dto.CustomerDTO;
+import model.dto.EmployeeDTO;
 import model.dto.SupplierDTO;
 
 /**
@@ -226,6 +227,41 @@ public class DALManager implements IDALManager {
             response.messagesList.add((message));
         } else {
             objRemover.deleteSupplier(connection, response, supplier);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public ArrayList<EmployeeDTO> getEmployees(Response res) {
+    Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            res.messagesList.add((message));
+        }
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM employees";
+        resultSet = objReader.getRecords(connection, res, query);
+        return objMapper.getEmployees(resultSet);    
+    
+    }
+
+    public void deleteEmployee(EmployeeDTO employee, Response response) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objRemover.deleteEmployee(connection, response, employee);
+            mySQL.closeConnection(connection);
+        }
+    }
+
+    public void saveEmployee(EmployeeDTO employee, Response response) {
+         Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objAdder.saveEmployee(employee, connection, response);
             mySQL.closeConnection(connection);
         }
     }

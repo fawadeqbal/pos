@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.dto.CustomerDTO;
+import model.dto.EmployeeDTO;
 import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.SupplierDTO;
@@ -135,7 +136,37 @@ public class ObjectAdder {
             try {
                 connection.close();
             } catch (SQLException ex) {
-                Logger.getLogger(ObjectAdder.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+        }
+    }
+
+    void saveEmployee(EmployeeDTO employee, Connection connection, Response response) {
+        try {
+            // Prepare the SQL query
+            String query = "INSERT INTO employees (name, phoneNumber) VALUES (?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            // Set the values for the parameters in the query
+            statement.setString(1, employee.getName());
+            statement.setString(2, employee.getPhoneNumber());
+
+            // Execute the query
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Customer added successfully
+                response.messagesList.add(new Message("Supplier added successfully.", MessageType.Information));
+            } else {
+                // Failed to add the customer
+                response.messagesList.add(new Message("Failed to add new Supplier.", MessageType.Error));
+            }
+        } catch (SQLException e) {
+            response.messagesList.add(new Message(e.getMessage(), MessageType.Error));
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                
             }
         }
     }

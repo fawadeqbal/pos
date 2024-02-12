@@ -4,12 +4,10 @@
  */
 package controller;
 
-import controller.IPOSController;
 import dal.DALManager;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import model.ApplicationSession;
-import model.POSFactory;
 import model.POSFactory;
 import model.dto.CustomerDTO;
 import model.dto.Response;
@@ -17,7 +15,7 @@ import model.dto.SupplierDTO;
 import model.dto.UserDTO;
 import model.validators.CommonValidator;
 import ui.LoginUI;
-
+import model.dto.EmployeeDTO;
 /**
  *
  * @author fawad
@@ -65,9 +63,7 @@ public class POSController implements IPOSController {
             if (currentScreen != null) {
                 currentScreen.dispose();
             }
-            // Set the ApplicationSession to null to signify session expiration
             objApplicationSession = null;
-            // Show the LoginUI
             System.out.println("Expired.");
             new LoginUI().setVisible(true);
         }
@@ -79,7 +75,7 @@ public class POSController implements IPOSController {
 
     @Override
     public void verifyUser(UserDTO user, Response responseObj) {
-        CommonValidator.validateUser(user, responseObj);
+        CommonValidator.validateObject(user, responseObj);
         if (responseObj.isSuccessfull()) {
             dalManagerObj.verifyUser(user, responseObj);
             if (responseObj.isSuccessfull()) {
@@ -92,7 +88,7 @@ public class POSController implements IPOSController {
 
     @Override
     public void addUser(UserDTO userObj, Response responseObj) {
-        CommonValidator.validateUser(userObj, responseObj);
+        CommonValidator.validateObject(userObj, responseObj);
         if (responseObj.isSuccessfull()) {
             dalManagerObj.addUser(userObj, responseObj);
         }
@@ -118,7 +114,7 @@ public class POSController implements IPOSController {
 
     @Override
     public void deleteUser(UserDTO userObj, Response reponseObj) {
-        CommonValidator.validateUser(userObj, reponseObj);
+        CommonValidator.validateObject(userObj, reponseObj);
         if (reponseObj.isSuccessfull()) {
             dalManagerObj.deleteUser(userObj, reponseObj);
         }
@@ -126,8 +122,12 @@ public class POSController implements IPOSController {
 
     @Override
     public Response saveCustomer(CustomerDTO customer) {
+       
         Response response = POSFactory.getInstanceOfResponse();
-        dalManagerObj.saveCustomer(customer, response);
+        CommonValidator.validateObject(customer, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.saveCustomer(customer, response);
+        }
         return response;
     }
 
@@ -145,10 +145,14 @@ public class POSController implements IPOSController {
 
     @Override
     public Response updateCustomer(CustomerDTO customer) {
-       Response response = POSFactory.getInstanceOfResponse();
-        dalManagerObj.updateCustomer(customer, response);
+        Response response = POSFactory.getInstanceOfResponse();
+        CommonValidator.validateObject(customer, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.updateCustomer(customer, response);
+        }
         return response;
     }
+
     @Override
     public Response saveSupplier(SupplierDTO supplier) {
         Response response = POSFactory.getInstanceOfResponse();
@@ -165,7 +169,7 @@ public class POSController implements IPOSController {
 
     @Override
     public Response deleteSupplier(SupplierDTO supplier) {
-       Response response = POSFactory.getInstanceOfResponse();
+        Response response = POSFactory.getInstanceOfResponse();
         dalManagerObj.deleteSupplier(supplier, response);
         return response;
     }
@@ -173,5 +177,38 @@ public class POSController implements IPOSController {
     @Override
     public ArrayList<SupplierDTO> getSuppliers(Response res) {
         return dalManagerObj.getSuppliers(res);
+    }
+
+    @Override
+    public Response saveEmployee(EmployeeDTO employee) {
+      Response response = POSFactory.getInstanceOfResponse();
+        CommonValidator.validateObject(employee, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.saveEmployee(employee, response);
+        }
+        return response;
+        
+    }
+
+    @Override
+    public Response updateEmployee(EmployeeDTO employee) {
+        
+        return null;
+        
+    }
+
+    @Override
+    public Response deleteEmployee(EmployeeDTO employee) {
+        Response response = POSFactory.getInstanceOfResponse();
+        dalManagerObj.deleteEmployee(employee, response);
+        return response;
+       
+    }
+
+    @Override
+    public ArrayList<EmployeeDTO> getEmployees(Response res) {
+        
+       return dalManagerObj.getEmployees(res);
+        
     }
 }

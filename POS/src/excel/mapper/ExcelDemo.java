@@ -8,15 +8,7 @@ public class ExcelDemo {
 
     public static void main(String[] args) {
         try {
-            // Example of using ExcelWriter
-            ExcelWriter excelWriter = new ExcelWriter("test");
-            excelWriter.addDataToRow("Name", "Age", "Score");
-            excelWriter.createNewRow();
-            excelWriter.addDataToRow("John", 25, 90.5);
-            excelWriter.createNewRow();
-            excelWriter.addDataToRow("Alice", 30, 85.0);
-            excelWriter.saveWorkbook("output.xlsx");
-            excelWriter.closeWorkbook();
+           
 
             // Example of using ExcelModifier
             ExcelModifier excelModifier = new ExcelModifier("output.xlsx");

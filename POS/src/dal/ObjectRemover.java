@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import model.dto.CustomerDTO;
+import model.dto.EmployeeDTO;
 import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.Response;
@@ -12,7 +13,7 @@ import model.dto.UserDTO;
 
 public class ObjectRemover {
 
-    public void deleteUser(Connection connection, Response responseObj, UserDTO userObj) {
+    void deleteUser(Connection connection, Response responseObj, UserDTO userObj) {
         PreparedStatement preparedStatement = null;
         try {
             String query = "DELETE FROM users WHERE username = ?";
@@ -71,6 +72,32 @@ public class ObjectRemover {
             String query = "DELETE FROM suppliers WHERE id = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, supplier.getId());
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                response.messagesList.add(new Message("Supplier Deleted successfully.",MessageType.Information));
+            } else {
+                response.messagesList.add(new Message("Supplier deletion failed",MessageType.Error));
+            }
+        } catch (SQLException e) {
+            response.messagesList.add(new Message(e.getMessage(),MessageType.Error));
+        } finally {
+            // Close the PreparedStatement
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    response.messagesList.add(new Message(e.getMessage(),MessageType.Error));
+                }
+            }
+        }
+    }
+
+    void deleteEmployee(Connection connection, Response response, EmployeeDTO employee) {
+        PreparedStatement preparedStatement = null;
+        try {
+            String query = "DELETE FROM employees WHERE id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, employee.getId());
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
                 response.messagesList.add(new Message("Supplier Deleted successfully.",MessageType.Information));

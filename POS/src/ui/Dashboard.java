@@ -125,9 +125,14 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        lastButton.setBackground(new java.awt.Color(255, 0, 51));
+        lastButton.setBackground(new java.awt.Color(102, 0, 0));
         lastButton.setForeground(new java.awt.Color(255, 255, 255));
-        lastButton.setText("Customers");
+        lastButton.setText("Logout");
+        lastButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastButtonActionPerformed(evt);
+            }
+        });
 
         reportsBtn.setBackground(new java.awt.Color(255, 0, 51));
         reportsBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -243,7 +248,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void employeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeBtnActionPerformed
         // TODO add your handling code here:
         mainPanel.removeAll();
-        mainPanel.add(new EmployeeUI(), BorderLayout.CENTER);
+        mainPanel.add(new EmployeeUI(this.controller), BorderLayout.CENTER);
         mainPanel.validate();
     }//GEN-LAST:event_employeeBtnActionPerformed
 
@@ -286,6 +291,11 @@ public class Dashboard extends javax.swing.JFrame {
 //        customerBtn.setBackground(new Color(255,0,51));
 //        customerBtn.setForeground(Color.white);
     }//GEN-LAST:event_customerBtnFocusLost
+
+    private void lastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastButtonActionPerformed
+        // TODO add your handling code here:
+        POSController.expireSession();
+    }//GEN-LAST:event_lastButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -13,7 +13,7 @@ public class Response {
         messagesList = new ArrayList<>();
     }
 
-    public boolean hasError() {
+    private boolean hasError() {
         for(Message m : messagesList)
         {
             if(m.type == MessageType.Error || m.type == MessageType.Exception)

@@ -3,6 +3,7 @@ package controller;
 
 import java.util.ArrayList;
 import model.dto.CustomerDTO;
+import model.dto.EmployeeDTO;
 import model.dto.Response;
 import model.dto.SupplierDTO;
 import model.dto.UserDTO;
@@ -40,5 +41,13 @@ public interface IPOSController {
     Response deleteSupplier(SupplierDTO supplier);
     
     ArrayList<SupplierDTO> getSuppliers(Response res);
+    
+     Response saveEmployee(EmployeeDTO employee);
+    
+    Response updateEmployee(EmployeeDTO employee);
+
+    Response deleteEmployee(EmployeeDTO employee);
+    
+    ArrayList<EmployeeDTO> getEmployees(Response res);
     
 }
