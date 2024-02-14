@@ -28,7 +28,7 @@ This is a Java Swing-based Point of Sale (POS) system built with MySQL server in
 2. **Set up the database**:
     - Install MySQL server.
     - Create a new database named `pos`.
-    - Import the SQL schema from `dbsql`.
+    - Import the SQL schema from `DBScripts/pos.sql`.
 
 3. **Configure database connection**:
     - Update the database connection settings in `src/main/resources/config.properties` with your MySQL server credentials.
