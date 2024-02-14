@@ -22,13 +22,13 @@ This is a Java Swing-based Point of Sale (POS) system built with MySQL server in
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/point-of-sale.git
+    git clone https://github.com/fawadeqbal/pos.git
     ```
 
 2. **Set up the database**:
     - Install MySQL server.
     - Create a new database named `pos`.
-    - Import the SQL schema from `database/schema.sql`.
+    - Import the SQL schema from `dbsql`.
 
 3. **Configure database connection**:
     - Update the database connection settings in `src/main/resources/config.properties` with your MySQL server credentials.
