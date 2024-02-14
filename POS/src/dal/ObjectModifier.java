@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import model.dto.CustomerDTO;
+import model.dto.EmployeeDTO;
 import model.dto.Message;
 import model.dto.MessageType;
 import model.dto.ProductDTO;
@@ -104,6 +105,33 @@ public class ObjectModifier {
 
     void updateProduct(ProductDTO product, Connection connection, Response response) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void updateEmployee(EmployeeDTO employee, Connection connection, Response responseObj) {
+         try {
+            // Prepare the SQL query
+            String query = "UPDATE employees SET name = ?, phoneNumber = ? WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            // Set the values for the parameters in the query
+            statement.setString(1, employee.getName());
+            statement.setString(2, employee.getPhoneNumber());
+            statement.setInt(3, employee.getId());
+
+            // Execute the query
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Customer updated successfully
+                responseObj.messagesList.add(new Message("Customer updated successfully.", MessageType.Information));
+            } else {
+                // Failed to update the customer
+                responseObj.messagesList.add(new Message("Failed to update customer.", MessageType.Error));
+            }
+        } catch (SQLException e) {
+            // Handle any SQL errors
+            responseObj.messagesList.add(new Message(e.getMessage(), MessageType.Error));
+        }
     }
 
 }

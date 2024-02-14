@@ -87,4 +87,9 @@ public class ProductDTO {
     public void setQuantityType(String quantityType) {
         this.quantityType = quantityType;
     }
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" + "productId=" + productId + ", productName=" + productName + ", barcode=" + barcode + ", price=" + price + ", stockQuantity=" + stockQuantity + ", categoryId=" + categoryId + ", quantityType=" + quantityType + '}';
+    }
 }

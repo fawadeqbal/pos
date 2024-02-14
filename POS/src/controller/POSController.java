@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import model.ApplicationSession;
 import model.POSFactory;
+import model.dto.CategoryDTO;
 import model.dto.CustomerDTO;
 import model.dto.Response;
 import model.dto.SupplierDTO;
@@ -191,8 +192,9 @@ public class POSController implements IPOSController {
 
     @Override
     public Response updateEmployee(EmployeeDTO employee) {
-
-        return null;
+        Response response = POSFactory.getInstanceOfResponse();
+        dalManagerObj.updateEmployee(employee, response);
+        return response;
 
     }
 
@@ -244,6 +246,42 @@ public class POSController implements IPOSController {
     @Override
     public ArrayList<ProductDTO> getProducts(Response response) {
         return dalManagerObj.getProducts(response);
+    }
+
+    @Override
+    public Response deleteCategory(CategoryDTO category) {
+        Response response = POSFactory.getInstanceOfResponse();
+        CommonValidator.validateObject(category, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.deleteCategory(category, response);
+        }
+        return response;
+    
+    }
+
+    @Override
+    public Response updateCategory(CategoryDTO category) {
+        Response response = POSFactory.getInstanceOfResponse();
+        CommonValidator.validateObject(category, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.updateCategory(category, response);
+        }
+        return response;
+    }
+
+    @Override
+    public ArrayList<CategoryDTO> getCategories(Response res) {
+        return dalManagerObj.getCategories(res);
+    }
+
+    @Override
+    public Response saveCategory(CategoryDTO category) {
+        Response response = POSFactory.getInstanceOfResponse();
+        CommonValidator.validateObject(category, response);
+        if (response.isSuccessfull()) {
+            dalManagerObj.saveCategory(category, response);
+        }
+        return response;
     }
 
 }

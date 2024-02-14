@@ -90,23 +90,18 @@ public class CustomersUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        rSTableMetro1.setCellSelectionEnabled(true);
         rSTableMetro1.setColorBackgoundHead(new java.awt.Color(255, 0, 51));
         rSTableMetro1.setColorFilasForeground1(new java.awt.Color(255, 0, 51));
         rSTableMetro1.setColorFilasForeground2(new java.awt.Color(255, 0, 51));
         rSTableMetro1.setColorSelBackgound(new java.awt.Color(255, 0, 51));
+        rSTableMetro1.setColumnSelectionAllowed(false);
         rSTableMetro1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(rSTableMetro1);
-        rSTableMetro1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (rSTableMetro1.getColumnModel().getColumnCount() > 0) {
             rSTableMetro1.getColumnModel().getColumn(0).setResizable(false);
-            rSTableMetro1.getColumnModel().getColumn(0).setHeaderValue("Title 1");
             rSTableMetro1.getColumnModel().getColumn(1).setResizable(false);
-            rSTableMetro1.getColumnModel().getColumn(1).setHeaderValue("Title 2");
             rSTableMetro1.getColumnModel().getColumn(2).setResizable(false);
-            rSTableMetro1.getColumnModel().getColumn(2).setHeaderValue("Title 3");
             rSTableMetro1.getColumnModel().getColumn(3).setResizable(false);
-            rSTableMetro1.getColumnModel().getColumn(3).setHeaderValue("Title 4");
         }
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -358,7 +353,7 @@ public class CustomersUI extends javax.swing.JPanel {
                 searchId.setText(String.valueOf((Integer) cellValue));
             } else {
                 // Handle the case where the cell value is not an Integer
-                searchId.setText("Invalid value");
+                searchId.setText("");
             }
         } else {
             // Handle the case where no row is selected

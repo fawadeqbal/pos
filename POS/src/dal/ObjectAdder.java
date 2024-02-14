@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.dto.CategoryDTO;
 import model.dto.CustomerDTO;
 import model.dto.EmployeeDTO;
 import model.dto.Message;
@@ -201,6 +202,35 @@ public class ObjectAdder {
                 connection.close();
             } catch (SQLException ex) {
                 // Handle exception
+            }
+        }
+    }
+
+    void saveCategory(CategoryDTO category, Connection connection, Response response) {
+        try {
+            // Prepare the SQL query
+            String query = "INSERT INTO category (name) VALUES (?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            // Set the values for the parameters in the query
+            statement.setString(1, category.getName());
+
+            // Execute the query
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Customer added successfully
+                response.messagesList.add(new Message("Category added successfully.", MessageType.Information));
+            } else {
+                // Failed to add the customer
+                response.messagesList.add(new Message("Failed to add new Category.", MessageType.Error));
+            }
+        } catch (SQLException e) {
+            response.messagesList.add(new Message(e.getMessage(), MessageType.Error));
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+
             }
         }
     }

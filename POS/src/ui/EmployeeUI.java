@@ -6,6 +6,7 @@ package ui;
 
 import common.CommonHandler;
 import controller.IPOSController;
+import controller.POSController;
 import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -21,13 +22,13 @@ import model.dto.Response;
  */
 public class EmployeeUI extends javax.swing.JPanel {
     
-    private IPOSController controller;
+    private POSController controller;
 
     /**
      * 
      * @param controller
      */
-    public EmployeeUI(IPOSController controller) {
+    public EmployeeUI(POSController controller) {
         initComponents();
         this.controller = controller;
         populateData();
@@ -294,10 +295,6 @@ public class EmployeeUI extends javax.swing.JPanel {
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
         EmployeeDTO emp = new EmployeeDTO();
-        if(searchId.getText().isEmpty()){
-            
-        }
-        else
         emp.setId(Integer.parseInt(searchId.getText()));
         emp.setName(nameField.getText());
         emp.setPhoneNumber(phoneNoField.getText());

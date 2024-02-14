@@ -5,6 +5,7 @@
 package test;
 
 import dal.DALManager;
+import java.util.ArrayList;
 import model.dto.ProductDTO;
 import model.dto.Response;
 
@@ -25,6 +26,10 @@ public class TestDALManager {
         p.setCategoryId(1);
         Response res = new Response();
         dal.addProduct(p, res);
+       ArrayList<ProductDTO> list=dal.getProducts(res);
+       for(ProductDTO p1 : list){
+                System.out.println(p1);
+            }
         if (res.isSuccessfull()) {
             System.out.println(res.getInfoMessages());
         }else{

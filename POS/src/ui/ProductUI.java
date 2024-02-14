@@ -4,73 +4,116 @@
  */
 package ui;
 
-import common.CommonHandler;
-import controller.IPOSController;
+import controller.POSController;
 import java.util.ArrayList;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import model.POSFactory;
-import model.dto.CustomerDTO;
+import model.dto.CategoryDTO;
+import model.dto.EmployeeDTO;
+import model.dto.ProductDTO;
 import model.dto.Response;
+import model.dto.SupplierDTO;
 
 /**
  *
  * @author fawad
  */
 public class ProductUI extends javax.swing.JPanel {
-    
-    private IPOSController controller;
 
-    /**
-     * 
-     * @param controller
-     */
-    public ProductUI(IPOSController controller) {
+    private POSController controller;
+
+    public ProductUI(POSController controller) {
         initComponents();
         this.controller = controller;
+        loadDataIntoSupplierCheckBox();
+        loadDataIntoCategoryCheckBox();
         populateData();
-        searchBtn.addActionListener(this::searchBtnActionPerformed);
-        rSTableMetro1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    handleRowSelection();
-                }
-            }
-            
-        });
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        supplierDD = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        categoryDD = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         rSTableMetro1 = new rojerusan.RSTableMetro();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        phoneNoField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        updateBtn = new javax.swing.JButton();
-        nameField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        searchId = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        saveCustomer = new javax.swing.JButton();
-        deleteCustomer = new javax.swing.JButton();
-        searchBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        rSTableMetro1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        supplierDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        supplierDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supplierDDActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Product Information");
+
+        jLabel2.setText("Category");
+
+        jLabel3.setText("Supplier");
+
+        categoryDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoryDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryDDActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("jLabel4");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(supplierDD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categoryDD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(supplierDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(categoryDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, java.awt.BorderLayout.CENTER);
+
         rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -81,338 +124,69 @@ public class ProductUI extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        rSTableMetro1.setCellSelectionEnabled(true);
-        rSTableMetro1.setColorBackgoundHead(new java.awt.Color(255, 0, 51));
-        rSTableMetro1.setColorFilasForeground1(new java.awt.Color(255, 0, 51));
-        rSTableMetro1.setColorFilasForeground2(new java.awt.Color(255, 0, 51));
-        rSTableMetro1.setColorSelBackgound(new java.awt.Color(255, 0, 51));
-        rSTableMetro1.getTableHeader().setReorderingAllowed(false);
+        ));
         jScrollPane1.setViewportView(rSTableMetro1);
-        rSTableMetro1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (rSTableMetro1.getColumnModel().getColumnCount() > 0) {
-            rSTableMetro1.getColumnModel().getColumn(0).setResizable(false);
-            rSTableMetro1.getColumnModel().getColumn(0).setHeaderValue("Title 1");
-            rSTableMetro1.getColumnModel().getColumn(1).setResizable(false);
-            rSTableMetro1.getColumnModel().getColumn(1).setHeaderValue("Title 2");
-            rSTableMetro1.getColumnModel().getColumn(2).setResizable(false);
-            rSTableMetro1.getColumnModel().getColumn(2).setHeaderValue("Title 3");
-            rSTableMetro1.getColumnModel().getColumn(3).setResizable(false);
-            rSTableMetro1.getColumnModel().getColumn(3).setHeaderValue("Title 4");
-        }
 
-        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel6.setPreferredSize(new java.awt.Dimension(782, 120));
-        jPanel6.setLayout(new java.awt.BorderLayout());
-
-        jPanel3.setLayout(new java.awt.GridBagLayout());
-
-        phoneNoField.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        phoneNoField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneNoFieldActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 76;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
-        jPanel3.add(phoneNoField, gridBagConstraints);
-
-        jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel4.setText("Phone No:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 29, 0, 0);
-        jPanel3.add(jLabel4, gridBagConstraints);
-
-        updateBtn.setText("Update");
-        updateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 18, 6, 0);
-        jPanel3.add(updateBtn, gridBagConstraints);
-
-        nameField.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 74;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 12, 0, 0);
-        jPanel3.add(nameField, gridBagConstraints);
-
-        jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel3.setText("Name:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 45, 0, 0);
-        jPanel3.add(jLabel3, gridBagConstraints);
-
-        searchId.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 63;
-        gridBagConstraints.ipady = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 6, 0, 0);
-        jPanel3.add(searchId, gridBagConstraints);
-
-        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel2.setText("Search Id:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 10, 0, 0);
-        jPanel3.add(jLabel2, gridBagConstraints);
-
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Customer Information");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 16;
-        gridBagConstraints.ipadx = 595;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        jPanel3.add(jLabel1, gridBagConstraints);
-
-        saveCustomer.setText("Save");
-        saveCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveCustomerActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 8, 6, 0);
-        jPanel3.add(saveCustomer, gridBagConstraints);
-
-        deleteCustomer.setText("Delete");
-        deleteCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCustomerActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 1, 6, 0);
-        jPanel3.add(deleteCustomer, gridBagConstraints);
-
-        searchBtn.setText("Search");
-        searchBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 12, 6, 0);
-        jPanel3.add(searchBtn, gridBagConstraints);
-
-        jButton1.setText("Clear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 12, 6, 0);
-        jPanel3.add(jButton1, gridBagConstraints);
-
-        jPanel6.add(jPanel3, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(jPanel6, java.awt.BorderLayout.PAGE_START);
-
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        add(jScrollPane1, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerActionPerformed
+    private void supplierDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierDDActionPerformed
         // TODO add your handling code here:
+        String s=(String) supplierDD.getSelectedItem();
+        System.out.println(s);
+    }//GEN-LAST:event_supplierDDActionPerformed
+
+    private void categoryDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryDDActionPerformed
         
-            CustomerDTO customer = new CustomerDTO();
-        customer.setId(new Integer(searchId.getText()));
-        Response res = this.controller.deleteCustomer(customer);
-        
-        if (res.isSuccessfull()) {
-            searchId.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
-            populateData();
-           } 
-        CommonHandler.handleResponse(res);
-        
-    }//GEN-LAST:event_deleteCustomerActionPerformed
+    }//GEN-LAST:event_categoryDDActionPerformed
 
-    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        // TODO add your handling code here:
-        CustomerDTO customer = new CustomerDTO();
-        if(searchId.getText().isEmpty()){
-            
-        }
-        else
-        customer.setId(Integer.parseInt(searchId.getText()));
-        customer.setName(nameField.getText());
-        customer.setPhoneNumber(phoneNoField.getText());
-        Response response = this.controller.updateCustomer(customer);
-        if (response.isSuccessfull()) {
-            searchId.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
-            populateData();
-        }        
-        CommonHandler.handleResponse(response);
-    }//GEN-LAST:event_updateBtnActionPerformed
-
-    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        String searchIdText = searchId.getText();
-        searchCustomerById(searchIdText);
-    }//GEN-LAST:event_searchBtnActionPerformed
-
-    private void phoneNoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNoFieldActionPerformed
-
-    private void saveCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCustomerActionPerformed
-        // TODO add your handling code here:
-        CustomerDTO customer = new CustomerDTO();
-        customer.setName(nameField.getText());
-        customer.setPhoneNumber(phoneNoField.getText());
-        Response res = this.controller.saveCustomer(customer);
-        if (res.isSuccessfull()) {
-            searchId.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
-            populateData();
-        }
-        CommonHandler.handleResponse(res);
-        
-    }//GEN-LAST:event_saveCustomerActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        searchId.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
-    private void handleRowSelection() {
-        int rowIndex = rSTableMetro1.getSelectedRow();
-        
-        if (rowIndex != -1) {
-            TableModel tableModel = rSTableMetro1.getModel();
-            nameField.setText((String) tableModel.getValueAt(rowIndex, 1));
-            phoneNoField.setText((String) tableModel.getValueAt(rowIndex, 2));
-            Object cellValue = tableModel.getValueAt(rowIndex, 0);
-
-            // Check if the cell value is an Integer
-            if (cellValue instanceof Integer) {
-                // Convert the Integer to a String and set it as the text
-                searchId.setText(String.valueOf((Integer) cellValue));
-            } else {
-                // Handle the case where the cell value is not an Integer
-                searchId.setText("Invalid value");
-            }
-        } else {
-            // Handle the case where no row is selected
-            // You might want to clear or handle the fields accordingly
-        }
-    }
-    
-    private void populateData() {
+     private void populateData() {
         Response res = POSFactory.getInstanceOfResponse();
-        ArrayList<CustomerDTO> customers = controller.getCustomers(res);
-        String[] columnNames = {"Id", "Name", "Phone No"};
+        ArrayList<ProductDTO> products = controller.getProducts(res);
+        String[] columnNames = {"Id", "Name", "Bar Code","Price","Category Id","Stock"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
-        for (CustomerDTO customer : customers) {
-            Object[] rowData = {customer.getId(), customer.getName(), customer.getPhoneNumber()};
+        for (ProductDTO product : products) {
+            Object[] rowData = {product.getProductId(), product.getProductName(), product.getBarcode(),product.getPrice(),product.getCategoryId(),product.getStockQuantity()};
             defaultTableModel.addRow(rowData);
         }
         rSTableMetro1.setModel(defaultTableModel);
     }
+    private void loadDataIntoSupplierCheckBox() {
+        Response r = new Response();
+        ArrayList<SupplierDTO> lis = this.controller.getSuppliers(r);
 
-    private void searchCustomerById(String customerId) {
-        DefaultTableModel tableModel = (DefaultTableModel) rSTableMetro1.getModel();
-        int rowCount = tableModel.getRowCount();
-        
-        for (int i = 0; i < rowCount; i++) {
-            Object cellValue = tableModel.getValueAt(i, 0);
-            if (cellValue != null && cellValue.toString().equals(customerId)) {
-                nameField.setText((String) tableModel.getValueAt(i, 1));
-                phoneNoField.setText((String) tableModel.getValueAt(i, 2));
-                return;
-            }
+        ArrayList<String> names = new ArrayList<>();
+        for (SupplierDTO supplier : lis) {
+            names.add(supplier.getName());
         }
-        // If the customer with the specified ID is not found
-        nameField.setText("");
-        phoneNoField.setText("");
+
+        ComboBoxModel<String> model = new DefaultComboBoxModel<>(names.toArray(new String[0]));
+
+        supplierDD.setModel(model);
+    }
+     private void loadDataIntoCategoryCheckBox() {
+        Response r = new Response();
+        ArrayList<CategoryDTO> lis = this.controller.getCategories(r);
+
+        ArrayList<String> names = new ArrayList<>();
+        for (CategoryDTO cat : lis) {
+            names.add(cat.getName());
+        }
+
+        ComboBoxModel<String> model = new DefaultComboBoxModel<>(names.toArray(new String[0]));
+
+        categoryDD.setModel(model);
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deleteCustomer;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> categoryDD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nameField;
-    private javax.swing.JTextField phoneNoField;
     private rojerusan.RSTableMetro rSTableMetro1;
-    private javax.swing.JButton saveCustomer;
-    private javax.swing.JButton searchBtn;
-    private javax.swing.JTextField searchId;
-    private javax.swing.JButton updateBtn;
+    private javax.swing.JComboBox<String> supplierDD;
     // End of variables declaration//GEN-END:variables
 }
