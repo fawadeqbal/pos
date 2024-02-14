@@ -31,7 +31,7 @@ This is a Java Swing-based Point of Sale (POS) system built with MySQL server in
     - Import the SQL schema from `DBScripts/pos.sql`.
 
 3. **Configure database connection**:
-    - Update the database connection settings in `src/main/resources/config.properties` with your MySQL server credentials.
+    - Update the database connection (Line 23) settings in `POS/src/dal/DALMnager.java` with your MySQL server credentials.
 
 4. **Build and run**:
     - Open the project in your favorite Java IDE.
