@@ -1,5 +1,5 @@
 
-package controller;
+package model;
 
 import dal.DALManager;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import java.util.ArrayList;
 import model.dto.CategoryDTO;

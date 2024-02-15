@@ -4,7 +4,7 @@
  */
 package ui;
 
-import controller.POSController;
+import model.POSController;
 import javax.swing.JFrame;
 import model.POSFactory;
 import model.dto.MessageType;

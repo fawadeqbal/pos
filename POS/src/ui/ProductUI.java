@@ -4,7 +4,7 @@
  */
 package ui;
 
-import controller.POSController;
+import model.POSController;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;

@@ -4,7 +4,6 @@
  */
 package model;
 
-import controller.POSController;
 import dal.*;
 import model.dto.Response;
 

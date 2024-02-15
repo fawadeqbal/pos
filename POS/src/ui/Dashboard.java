@@ -1,6 +1,6 @@
 package ui;
 
-import controller.POSController;
+import model.POSController;
 import java.awt.BorderLayout;
 
 import raven.glasspanepopup.GlassPanePopup;

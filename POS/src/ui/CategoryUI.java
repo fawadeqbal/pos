@@ -4,8 +4,8 @@
  */
 package ui;
 
-import common.CommonHandler;
-import controller.IPOSController;
+import ui.components.CommonHandler;
+import model.IPOSController;
 import java.util.ArrayList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
