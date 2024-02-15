@@ -44,8 +44,8 @@ public class LoginUI extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        handleLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        loginBTN = new ui.components.Button();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -56,7 +56,7 @@ public class LoginUI extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         usernameField.setForeground(new java.awt.Color(255, 0, 51));
-        usernameField.setText("fawadeqbal");
+        usernameField.setText("admin");
         usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameFieldActionPerformed(evt);
@@ -72,18 +72,20 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
         jLabel2.setText("Username");
 
-        handleLogin.setForeground(new java.awt.Color(255, 0, 51));
-        handleLogin.setText("Login");
-        handleLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                handleLoginActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
+
+        loginBTN.setBackground(new java.awt.Color(255, 0, 51));
+        loginBTN.setForeground(new java.awt.Color(255, 255, 255));
+        loginBTN.setText("Login");
+        loginBTN.setFont(new java.awt.Font("Serif", 1, 16)); // NOI18N
+        loginBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -101,8 +103,8 @@ public class LoginUI extends javax.swing.JFrame {
                     .addComponent(passwordField))
                 .addGap(69, 69, 69))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(handleLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153)
+                .addComponent(loginBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -118,9 +120,9 @@ public class LoginUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(27, 27, 27)
-                .addComponent(handleLogin)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(loginBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -176,10 +178,13 @@ public class LoginUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void handleLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleLoginActionPerformed
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
-       
-        UserDTO user=new UserDTO();
+    }//GEN-LAST:event_usernameFieldActionPerformed
+
+    private void loginBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTNActionPerformed
+        // TODO add your handling code here
+         UserDTO user=new UserDTO();
         user.setUsername(usernameField.getText());
         user.setPassword(new String(passwordField.getText()));
 
@@ -194,11 +199,7 @@ public class LoginUI extends javax.swing.JFrame {
             GlassPanePopup.showPopup(new MessageUI(responseObj.getErrorMessages(),MessageType.Error));
         
         }
-    }//GEN-LAST:event_handleLoginActionPerformed
-
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
+    }//GEN-LAST:event_loginBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,7 +207,6 @@ public class LoginUI extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton handleLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,6 +215,7 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private ui.components.Button loginBTN;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables

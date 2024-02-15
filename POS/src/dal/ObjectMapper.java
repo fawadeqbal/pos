@@ -132,4 +132,23 @@ public class ObjectMapper {
         return catList;
     }
 
+    ArrayList<ProductDTO> searchProductsByName(ResultSet resultSet) {
+         ArrayList<ProductDTO> productList = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                ProductDTO product = new ProductDTO();
+                product.setProductId(resultSet.getInt(1));
+                product.setProductName(resultSet.getString(2));
+                product.setBarcode(resultSet.getString(3));
+                product.setPrice(resultSet.getDouble(4));
+                product.setStockQuantity(resultSet.getDouble(5));
+                product.setCategoryId(resultSet.getInt(6));
+                product.setQuantityType(resultSet.getString(9));
+                productList.add(product);
+            }
+        } catch (Exception e) {
+        }
+        return productList;
+    }
+
 }

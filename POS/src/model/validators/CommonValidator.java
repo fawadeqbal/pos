@@ -25,7 +25,7 @@ public class CommonValidator {
     }
 
     private static void isValidUsername(String username, Response objResponse) {
-        if (username == null || username.length() < 6) {
+        if (username == null || username.length() < 5) {
             objResponse.messagesList.add(new Message("Email is not valid, provide valid username with at least 6 characters.", MessageType.Error));
             return;
         }

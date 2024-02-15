@@ -29,7 +29,7 @@ public class Dashboard extends javax.swing.JFrame {
         headerPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lastButton = new javax.swing.JButton();
+        button1 = new ui.components.Button();
         menuPanel = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         supplierBtn = new javax.swing.JButton();
@@ -53,13 +53,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Point of Sale");
 
-        lastButton.setBackground(new java.awt.Color(255, 0, 51));
-        lastButton.setForeground(new java.awt.Color(255, 255, 255));
-        lastButton.setText("Logout");
-        lastButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lastButton.addActionListener(new java.awt.event.ActionListener() {
+        button1.setBackground(new java.awt.Color(255, 0, 51));
+        button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setText("Logout");
+        button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastButtonActionPerformed(evt);
+                button1ActionPerformed(evt);
             }
         });
 
@@ -72,22 +71,22 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(766, 766, 766)
-                .addComponent(lastButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(lastButton))))
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(headerPanelLayout.createSequentialGroup()
+                            .addGap(16, 16, 16)
+                            .addComponent(jLabel2))
+                        .addGroup(headerPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -244,7 +243,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE))))
+                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,11 +320,6 @@ public class Dashboard extends javax.swing.JFrame {
 //        customerBtn.setForeground(Color.white);
     }//GEN-LAST:event_customerBtnFocusLost
 
-    private void lastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastButtonActionPerformed
-        // TODO add your handling code here:
-        POSController.expireSession();
-    }//GEN-LAST:event_lastButtonActionPerformed
-
     private void categoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryBtnActionPerformed
         // TODO add your handling code here:
         mainPanel.removeAll();
@@ -333,12 +327,19 @@ public class Dashboard extends javax.swing.JFrame {
         mainPanel.validate();
     }//GEN-LAST:event_categoryBtnActionPerformed
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+          // TODO add your handling code here:
+        POSController.expireSession();
+    }//GEN-LAST:event_button1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private ui.components.Button button1;
     private javax.swing.JButton categoryBtn;
     private javax.swing.JButton customerBtn;
     private javax.swing.JButton employeeBtn;
@@ -347,7 +348,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton lastButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JScrollPane menuPanel;
     private javax.swing.JButton productBtn;

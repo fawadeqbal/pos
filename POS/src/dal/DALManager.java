@@ -266,10 +266,9 @@ public class DALManager implements IDALManager {
             mySQL.closeConnection(connection);
         }
     }
-    
-    
+
     public void updateEmployee(EmployeeDTO employee, Response response) {
-       Connection connection = mySQL.getConnection();
+        Connection connection = mySQL.getConnection();
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             response.messagesList.add((message));
@@ -324,15 +323,15 @@ public class DALManager implements IDALManager {
     }
 
     public void deleteCategory(CategoryDTO category, Response response) {
-        
+
     }
 
     public void updateCategory(CategoryDTO category, Response response) {
-        
+
     }
 
     public ArrayList<CategoryDTO> getCategories(Response res) {
-       Connection connection = mySQL.getConnection();
+        Connection connection = mySQL.getConnection();
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             res.messagesList.add((message));
@@ -343,8 +342,8 @@ public class DALManager implements IDALManager {
     }
 
     public void saveCategory(CategoryDTO category, Response response) {
-       
-    Connection connection = mySQL.getConnection();
+
+        Connection connection = mySQL.getConnection();
         if (connection == null) {
             Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
             response.messagesList.add((message));
@@ -354,5 +353,17 @@ public class DALManager implements IDALManager {
         }
     }
 
+    public ArrayList<ProductDTO> searchProductsByName(String searchName, Response res) {
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            res.messagesList.add(message);
+            return null;
+        }
+
+        String query = "SELECT * FROM products WHERE name LIKE '%" + searchName + "%'";
+        ResultSet resultSet = objReader.getRecords(connection, res, query);
+        return objMapper.searchProductsByName(resultSet);
+    }
 
 }

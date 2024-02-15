@@ -51,4 +51,8 @@ public class DBReader {
         }
         return null;
     }
+
+    ResultSet searchProductsByName(Connection connection, Response res, String query) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

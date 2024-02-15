@@ -284,4 +284,8 @@ public class POSController implements IPOSController {
         return response;
     }
 
+    public ArrayList<ProductDTO> searchProductsByName(String searchName, Response res) {
+       return dalManagerObj.searchProductsByName(searchName,  res);
+    }
+
 }
