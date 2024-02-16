@@ -301,4 +301,16 @@ public class POSController implements IPOSController {
         return dalManagerObj.getProductById(searchId,response);
     }
 
+    @Override
+    public ArrayList<CategoryDTO> searchCategoryByName(String searchName, Response res) {
+    return dalManagerObj.searchCategoryByName(searchName,  res);
+        
+    }
+
+    @Override
+    public ArrayList<CustomerDTO> searchCustomersByName(String searchName, Response res) {
+    return dalManagerObj.searchCustomersByName(searchName,  res);
+        
+    }
+
 }

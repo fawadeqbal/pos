@@ -94,6 +94,7 @@ public class ProductUI extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         table = new javax.swing.JScrollPane();
@@ -145,6 +146,7 @@ public class ProductUI extends javax.swing.JPanel {
         jPanel2.add(table, java.awt.BorderLayout.PAGE_END);
 
         headerPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        headerPanel.setLayout(new java.awt.GridBagLayout());
 
         supplierDD.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         supplierDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -153,18 +155,49 @@ public class ProductUI extends javax.swing.JPanel {
                 supplierDDActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 53;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 56;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 42;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 0, 3);
+        headerPanel.add(supplierDD, gridBagConstraints);
 
         jLabel1.setBackground(new java.awt.Color(255, 0, 51));
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 21)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Product Information");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 55;
+        gridBagConstraints.ipadx = 597;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 10, 0, 0);
+        headerPanel.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel2.setText("Category");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 39;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 27, 0, 0);
+        headerPanel.add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel3.setText("Supplier");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 52;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 0);
+        headerPanel.add(jLabel3, gridBagConstraints);
 
         categoryDD.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         categoryDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -173,20 +206,66 @@ public class ProductUI extends javax.swing.JPanel {
                 categoryDDActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 51;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 22;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 28, 0, 0);
+        headerPanel.add(categoryDD, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel5.setText("Barcode");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 0);
+        headerPanel.add(jLabel5, gridBagConstraints);
 
         barcode.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 22;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 39;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 20, 0, 0);
+        headerPanel.add(barcode, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel6.setText("Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 52, 0, 0);
+        headerPanel.add(jLabel6, gridBagConstraints);
 
         name.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         name.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 36;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 6, 0, 0);
+        headerPanel.add(name, gridBagConstraints);
 
         jLabel7.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel7.setText("Price");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 52, 0, 0);
+        headerPanel.add(jLabel7, gridBagConstraints);
 
         price.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         price.addActionListener(new java.awt.event.ActionListener() {
@@ -194,22 +273,78 @@ public class ProductUI extends javax.swing.JPanel {
                 priceActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 36;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 6, 0, 0);
+        headerPanel.add(price, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel8.setText("Stock");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 39;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 27, 0, 0);
+        headerPanel.add(jLabel8, gridBagConstraints);
 
         stock.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 51;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 37;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 28, 0, 0);
+        headerPanel.add(stock, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel9.setText("Quantity Type");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 0);
+        headerPanel.add(jLabel9, gridBagConstraints);
 
         quantitytype.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         quantitytype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 22;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 26;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 18, 0, 0);
+        headerPanel.add(quantitytype, gridBagConstraints);
 
         searchByNameField.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 52;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 66;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(16, 27, 0, 0);
+        headerPanel.add(searchByNameField, gridBagConstraints);
 
         jLabel10.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel10.setText("Search by name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 51;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 16, 0, 0);
+        headerPanel.add(jLabel10, gridBagConstraints);
 
         clear.setBackground(new java.awt.Color(255, 0, 51));
         clear.setForeground(new java.awt.Color(255, 255, 255));
@@ -220,6 +355,16 @@ public class ProductUI extends javax.swing.JPanel {
                 clearActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 30;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 19;
+        gridBagConstraints.ipady = -8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 18, 2, 0);
+        headerPanel.add(clear, gridBagConstraints);
 
         update.setBackground(new java.awt.Color(255, 0, 51));
         update.setForeground(new java.awt.Color(255, 255, 255));
@@ -230,6 +375,16 @@ public class ProductUI extends javax.swing.JPanel {
                 updateActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 8;
+        gridBagConstraints.ipady = -8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 18, 2, 0);
+        headerPanel.add(update, gridBagConstraints);
 
         add.setBackground(new java.awt.Color(255, 0, 51));
         add.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,6 +395,16 @@ public class ProductUI extends javax.swing.JPanel {
                 addActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 29;
+        gridBagConstraints.ipady = -8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 65, 2, 0);
+        headerPanel.add(add, gridBagConstraints);
 
         delete.setBackground(new java.awt.Color(255, 0, 51));
         delete.setForeground(new java.awt.Color(255, 255, 255));
@@ -250,111 +415,16 @@ public class ProductUI extends javax.swing.JPanel {
                 deleteActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
-        headerPanel.setLayout(headerPanelLayout);
-        headerPanelLayout.setHorizontalGroup(
-            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(headerPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(6, 6, 6)
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(54, 54, 54)
-                                .addComponent(barcode, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel8)
-                                .addGap(52, 52, 52)
-                                .addComponent(stock, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addGap(12, 12, 12)
-                                .addComponent(supplierDD, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(headerPanelLayout.createSequentialGroup()
-                                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
-                                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(187, 187, 187))
-                                    .addGroup(headerPanelLayout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel10)
-                                            .addGroup(headerPanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addGap(11, 11, 11)
-                                                .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel9)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(quantitytype, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(27, 27, 27)
-                                                .addComponent(jLabel2)
-                                                .addGap(28, 28, 28)
-                                                .addComponent(categoryDD, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(27, 27, 27)))
-                                .addComponent(searchByNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)))))
-                .addGap(22, 22, 22))
-        );
-        headerPanelLayout.setVerticalGroup(
-            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(barcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supplierDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel3))))
-                .addGap(12, 12, 12)
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(quantitytype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(categoryDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel2))))
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchByNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 12;
+        gridBagConstraints.ipady = -8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 11, 2, 0);
+        headerPanel.add(delete, gridBagConstraints);
 
         jPanel2.add(headerPanel, java.awt.BorderLayout.CENTER);
 

@@ -7,10 +7,13 @@ package ui;
 import ui.components.CommonHandler;
 import model.IPOSController;
 import java.util.ArrayList;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import model.POSController;
 import model.POSFactory;
 import model.dto.CustomerDTO;
 import model.dto.Response;
@@ -20,29 +23,53 @@ import model.dto.Response;
  * @author fawad
  */
 public class CustomersUI extends javax.swing.JPanel {
-    
-    private IPOSController controller;
+
+    private POSController controller;
 
     /**
-     * 
+     *
      * @param controller
      */
-    public CustomersUI(IPOSController controller) {
+    public CustomersUI(POSController controller) {
         initComponents();
         this.controller = controller;
         populateData();
-        searchBtn.addActionListener(this::searchBtnActionPerformed);
-        rSTableMetro1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        searchByName.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    handleRowSelection();
-                }
+            public void insertUpdate(DocumentEvent e) {
+                updateSearchResults();
             }
-            
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateSearchResults();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // Plain text components do not fire these events
+            }
+
+            private void updateSearchResults() {
+                String searchText = searchByName.getText();
+                Response res = POSFactory.getInstanceOfResponse();
+                ArrayList<CustomerDTO> searchResults = controller.searchCustomersByName(searchText, res);
+                updateTableData(searchResults);
+            }
         });
     }
-    
+
+    private void updateTableData(ArrayList<CustomerDTO> customers) {
+        DefaultTableModel model = (DefaultTableModel) rSTableMetro1.getModel();
+        model.setRowCount(0); // Clear the existing table data
+
+        for (CustomerDTO customer : customers) {
+            Object[] rowData = {customer.getId(), customer.getName(), customer.getPhoneNumber()};
+            model.addRow(rowData);
+        }
+        rSTableMetro1.setModel(model);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,12 +85,11 @@ public class CustomersUI extends javax.swing.JPanel {
         updateBtn = new javax.swing.JButton();
         nameField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        searchId = new javax.swing.JTextField();
+        searchByName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         saveCustomer = new javax.swing.JButton();
         deleteCustomer = new javax.swing.JButton();
-        searchBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
@@ -94,7 +120,6 @@ public class CustomersUI extends javax.swing.JPanel {
         rSTableMetro1.setColorFilasForeground1(new java.awt.Color(255, 0, 51));
         rSTableMetro1.setColorFilasForeground2(new java.awt.Color(255, 0, 51));
         rSTableMetro1.setColorSelBackgound(new java.awt.Color(255, 0, 51));
-        rSTableMetro1.setColumnSelectionAllowed(false);
         rSTableMetro1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(rSTableMetro1);
         if (rSTableMetro1.getColumnModel().getColumnCount() > 0) {
@@ -172,7 +197,7 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(9, 45, 0, 0);
         jPanel3.add(jLabel3, gridBagConstraints);
 
-        searchId.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        searchByName.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -181,7 +206,7 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 6, 0, 0);
-        jPanel3.add(searchId, gridBagConstraints);
+        jPanel3.add(searchByName, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel2.setText("Search Id:");
@@ -234,20 +259,6 @@ public class CustomersUI extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(12, 1, 6, 0);
         jPanel3.add(deleteCustomer, gridBagConstraints);
 
-        searchBtn.setText("Search");
-        searchBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 12, 6, 0);
-        jPanel3.add(searchBtn, gridBagConstraints);
-
         jButton1.setText("Clear");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,45 +282,40 @@ public class CustomersUI extends javax.swing.JPanel {
 
     private void deleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerActionPerformed
         // TODO add your handling code here:
-        
-            CustomerDTO customer = new CustomerDTO();
-        customer.setId(new Integer(searchId.getText()));
+
+        CustomerDTO customer = new CustomerDTO();
+        customer.setId(new Integer(searchByName.getText()));
         Response res = this.controller.deleteCustomer(customer);
-        
+
         if (res.isSuccessfull()) {
-            searchId.setText("");
+            searchByName.setText("");
             nameField.setText("");
             phoneNoField.setText("");
             populateData();
-           } 
+        }
         CommonHandler.handleResponse(res);
-        
+
     }//GEN-LAST:event_deleteCustomerActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
         CustomerDTO customer = new CustomerDTO();
-        if(searchId.getText().isEmpty()){
-            
+        if (searchByName.getText().isEmpty()) {
+
+        } else {
+            customer.setId(Integer.parseInt(searchByName.getText()));
         }
-        else
-        customer.setId(Integer.parseInt(searchId.getText()));
         customer.setName(nameField.getText());
         customer.setPhoneNumber(phoneNoField.getText());
         Response response = this.controller.updateCustomer(customer);
         if (response.isSuccessfull()) {
-            searchId.setText("");
+            searchByName.setText("");
             nameField.setText("");
             phoneNoField.setText("");
             populateData();
-        }        
+        }
         CommonHandler.handleResponse(response);
     }//GEN-LAST:event_updateBtnActionPerformed
-
-    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        String searchIdText = searchId.getText();
-        searchCustomerById(searchIdText);
-    }//GEN-LAST:event_searchBtnActionPerformed
 
     private void phoneNoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoFieldActionPerformed
         // TODO add your handling code here:
@@ -322,25 +328,25 @@ public class CustomersUI extends javax.swing.JPanel {
         customer.setPhoneNumber(phoneNoField.getText());
         Response res = this.controller.saveCustomer(customer);
         if (res.isSuccessfull()) {
-            searchId.setText("");
+            searchByName.setText("");
             nameField.setText("");
             phoneNoField.setText("");
             populateData();
         }
         CommonHandler.handleResponse(res);
-        
+
     }//GEN-LAST:event_saveCustomerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        searchId.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
+        searchByName.setText("");
+        nameField.setText("");
+        phoneNoField.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     private void handleRowSelection() {
         int rowIndex = rSTableMetro1.getSelectedRow();
-        
+
         if (rowIndex != -1) {
             TableModel tableModel = rSTableMetro1.getModel();
             nameField.setText((String) tableModel.getValueAt(rowIndex, 1));
@@ -350,17 +356,17 @@ public class CustomersUI extends javax.swing.JPanel {
             // Check if the cell value is an Integer
             if (cellValue instanceof Integer) {
                 // Convert the Integer to a String and set it as the text
-                searchId.setText(String.valueOf((Integer) cellValue));
+                searchByName.setText(String.valueOf((Integer) cellValue));
             } else {
                 // Handle the case where the cell value is not an Integer
-                searchId.setText("");
+                searchByName.setText("");
             }
         } else {
             // Handle the case where no row is selected
             // You might want to clear or handle the fields accordingly
         }
     }
-    
+
     private void populateData() {
         Response res = POSFactory.getInstanceOfResponse();
         ArrayList<CustomerDTO> customers = controller.getCustomers(res);
@@ -373,23 +379,7 @@ public class CustomersUI extends javax.swing.JPanel {
         rSTableMetro1.setModel(defaultTableModel);
     }
 
-    private void searchCustomerById(String customerId) {
-        DefaultTableModel tableModel = (DefaultTableModel) rSTableMetro1.getModel();
-        int rowCount = tableModel.getRowCount();
-        
-        for (int i = 0; i < rowCount; i++) {
-            Object cellValue = tableModel.getValueAt(i, 0);
-            if (cellValue != null && cellValue.toString().equals(customerId)) {
-                nameField.setText((String) tableModel.getValueAt(i, 1));
-                phoneNoField.setText((String) tableModel.getValueAt(i, 2));
-                return;
-            }
-        }
-        // If the customer with the specified ID is not found
-        nameField.setText("");
-        phoneNoField.setText("");
-    }
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteCustomer;
@@ -406,8 +396,7 @@ public class CustomersUI extends javax.swing.JPanel {
     private javax.swing.JTextField phoneNoField;
     private rojerusan.RSTableMetro rSTableMetro1;
     private javax.swing.JButton saveCustomer;
-    private javax.swing.JButton searchBtn;
-    private javax.swing.JTextField searchId;
+    private javax.swing.JTextField searchByName;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }

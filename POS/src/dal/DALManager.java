@@ -397,4 +397,32 @@ public class DALManager implements IDALManager {
         }
         return null;
     }
+
+    public ArrayList<CategoryDTO> searchCategoryByName(String searchName, Response res) {
+    Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            res.messagesList.add(message);
+            return null;
+        }
+
+        String query = "SELECT * FROM category WHERE name LIKE '%" + searchName + "%'";
+        ResultSet resultSet = objReader.getRecords(connection, res, query);
+        return objMapper.getCategories(resultSet);
+       
+    }
+
+    public ArrayList<CustomerDTO> searchCustomersByName(String searchName, Response res) {
+      Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            res.messagesList.add(message);
+            return null;
+        }
+
+        String query = "SELECT * FROM customers WHERE name LIKE '%" + searchName + "%'";
+        ResultSet resultSet = objReader.getRecords(connection, res, query);
+        return objMapper.getCustomers(resultSet);
+          
+    }
 }

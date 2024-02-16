@@ -66,4 +66,9 @@ public interface IPOSController {
     public ArrayList<CategoryDTO> getCategories(Response res);
 
     public Response saveCategory(CategoryDTO customer);
+
+   ArrayList<CategoryDTO> searchCategoryByName(String searchText, Response response);
+
+    public ArrayList<CustomerDTO> searchCustomersByName(String searchText, Response res);
+
 }
