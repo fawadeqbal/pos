@@ -20,6 +20,7 @@ public class Dashboard extends javax.swing.JFrame {
         mainPanel.removeAll();
         mainPanel.add(new CustomersUI(this.controller), BorderLayout.CENTER);
         mainPanel.validate();
+        username.setText(POSController.objApplicationSession.getUser().getUsername());
         GlassPanePopup.install(this);
     }
     @SuppressWarnings("unchecked")
@@ -30,6 +31,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         button1 = new ui.components.Button();
+        username = new javax.swing.JLabel();
         menuPanel = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         supplierBtn = new javax.swing.JButton();
@@ -62,6 +64,10 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        username.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setText("jLabel4");
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
@@ -72,6 +78,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(username)
+                .addGap(27, 27, 27)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -79,7 +87,9 @@ public class Dashboard extends javax.swing.JFrame {
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(username))
                     .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(headerPanelLayout.createSequentialGroup()
                             .addGap(16, 16, 16)
@@ -329,7 +339,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-          // TODO add your handling code here:
+        // TODO add your handling code here:
         POSController.expireSession();
     }//GEN-LAST:event_button1ActionPerformed
 
@@ -354,5 +364,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton reportsBtn;
     private javax.swing.JButton saleBtn;
     private javax.swing.JButton supplierBtn;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

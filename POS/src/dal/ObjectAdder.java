@@ -175,7 +175,7 @@ public class ObjectAdder {
     void addProduct(ProductDTO product, Connection connection, Response response) {
         try {
             // Prepare the SQL query
-            String query = "INSERT INTO products (name, barcode, price, stock_quantity, category_id, quantity_type) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO products (name, barcode, price, stock_quantity, category_id, quantity_type,suppliers_id) VALUES (?, ?, ?, ?, ?, ? , ?)";
             PreparedStatement statement = connection.prepareStatement(query);
 
             // Set the values for the parameters in the query
@@ -185,6 +185,7 @@ public class ObjectAdder {
             statement.setDouble(4, product.getStockQuantity());
             statement.setInt(5, product.getCategoryId());
             statement.setString(6, product.getQuantityType().trim()); // Use enum name
+            statement.setInt(7, product.getSupplierId()); // Use enum name
 
             // Execute the query
             int rowsAffected = statement.executeUpdate();

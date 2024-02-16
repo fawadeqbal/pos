@@ -16,6 +16,7 @@ import model.dto.EmployeeDTO;
 import model.dto.ProductDTO;
 import model.dto.Response;
 import model.dto.SupplierDTO;
+import ui.components.CommonHandler;
 
 /**
  *
@@ -60,11 +61,11 @@ public class ProductUI extends javax.swing.JPanel {
         quantitytype = new javax.swing.JComboBox<>();
         searchByNameField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        searchButton = new ui.components.Button();
-        searchButton1 = new ui.components.Button();
-        searchButton2 = new ui.components.Button();
-        addBtn = new ui.components.Button();
-        searchButton3 = new ui.components.Button();
+        clear = new ui.components.Button();
+        search = new ui.components.Button();
+        update = new ui.components.Button();
+        add = new ui.components.Button();
+        delete = new ui.components.Button();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -292,13 +293,13 @@ public class ProductUI extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(16, 12, 0, 0);
         jPanel1.add(jLabel10, gridBagConstraints);
 
-        searchButton.setBackground(new java.awt.Color(255, 0, 51));
-        searchButton.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
-        searchButton.setText("Clear");
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
+        clear.setBackground(new java.awt.Color(255, 0, 51));
+        clear.setForeground(new java.awt.Color(255, 255, 255));
+        clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
+        clear.setText("Clear");
+        clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
+                clearActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -310,15 +311,15 @@ public class ProductUI extends javax.swing.JPanel {
         gridBagConstraints.ipady = -8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(17, 12, 8, 0);
-        jPanel1.add(searchButton, gridBagConstraints);
+        jPanel1.add(clear, gridBagConstraints);
 
-        searchButton1.setBackground(new java.awt.Color(255, 0, 51));
-        searchButton1.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
-        searchButton1.setText("Search");
-        searchButton1.addActionListener(new java.awt.event.ActionListener() {
+        search.setBackground(new java.awt.Color(255, 0, 51));
+        search.setForeground(new java.awt.Color(255, 255, 255));
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
+        search.setText("Search");
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButton1ActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -330,15 +331,15 @@ public class ProductUI extends javax.swing.JPanel {
         gridBagConstraints.ipady = -8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(17, 12, 8, 24);
-        jPanel1.add(searchButton1, gridBagConstraints);
+        jPanel1.add(search, gridBagConstraints);
 
-        searchButton2.setBackground(new java.awt.Color(255, 0, 51));
-        searchButton2.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
-        searchButton2.setText("Update");
-        searchButton2.addActionListener(new java.awt.event.ActionListener() {
+        update.setBackground(new java.awt.Color(255, 0, 51));
+        update.setForeground(new java.awt.Color(255, 255, 255));
+        update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButton2ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -350,15 +351,15 @@ public class ProductUI extends javax.swing.JPanel {
         gridBagConstraints.ipady = -8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(17, 18, 8, 0);
-        jPanel1.add(searchButton2, gridBagConstraints);
+        jPanel1.add(update, gridBagConstraints);
 
-        addBtn.setBackground(new java.awt.Color(255, 0, 51));
-        addBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
-        addBtn.setText("Add");
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
+        add.setBackground(new java.awt.Color(255, 0, 51));
+        add.setForeground(new java.awt.Color(255, 255, 255));
+        add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
+        add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtnActionPerformed(evt);
+                addActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -370,15 +371,15 @@ public class ProductUI extends javax.swing.JPanel {
         gridBagConstraints.ipady = -8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(17, 19, 8, 0);
-        jPanel1.add(addBtn, gridBagConstraints);
+        jPanel1.add(add, gridBagConstraints);
 
-        searchButton3.setBackground(new java.awt.Color(255, 0, 51));
-        searchButton3.setForeground(new java.awt.Color(255, 255, 255));
-        searchButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
-        searchButton3.setText("Delete");
-        searchButton3.addActionListener(new java.awt.event.ActionListener() {
+        delete.setBackground(new java.awt.Color(255, 0, 51));
+        delete.setForeground(new java.awt.Color(255, 255, 255));
+        delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search_26px.png"))); // NOI18N
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButton3ActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -390,7 +391,7 @@ public class ProductUI extends javax.swing.JPanel {
         gridBagConstraints.ipady = -8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(17, 11, 8, 0);
-        jPanel1.add(searchButton3, gridBagConstraints);
+        jPanel1.add(delete, gridBagConstraints);
 
         jPanel2.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -411,7 +412,13 @@ public class ProductUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_priceActionPerformed
 
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        // TODO add your handling code here:
+        
+    
+    }//GEN-LAST:event_clearActionPerformed
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
         String searchName = searchByNameField.getText();
     if (!searchName.isEmpty()) {
@@ -422,31 +429,39 @@ public class ProductUI extends javax.swing.JPanel {
         // If search field is empty, show all products
         populateData();
     }
-    
-    }//GEN-LAST:event_searchButtonActionPerformed
+    }//GEN-LAST:event_searchActionPerformed
 
-    private void searchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton1ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchButton1ActionPerformed
+    }//GEN-LAST:event_updateActionPerformed
 
-    private void searchButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton2ActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchButton2ActionPerformed
+        ProductDTO product=new ProductDTO();
+        product.setCategoryId(this.controller.getCategoryIdByName((String) this.categoryDD.getSelectedItem()));
+        product.setSupplierId(this.controller.getSupplierIdByName((String) this.supplierDD.getSelectedItem()));
+        product.setBarcode(barcode.getText());
+        product.setPrice(Integer.parseInt(price.getText()));
+        product.setQuantityType((String) quantitytype.getSelectedItem());
+        product.setProductName(name.getText());
+        product.setStockQuantity(Integer.parseInt(stock.getText()));
+        Response res=this.controller.addProduct(product);
+        CommonHandler.handleResponse(res);
+        if(res.isSuccessfull()){
+            populateData();
+        }
+    }//GEN-LAST:event_addActionPerformed
 
-    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addBtnActionPerformed
-
-    private void searchButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchButton3ActionPerformed
+    }//GEN-LAST:event_deleteActionPerformed
 
     private void updateTableData(ArrayList<ProductDTO> searchResults) {
-    String[] columnNames = {"Id", "Name", "Bar Code", "Price", "Category Id", "Stock"};
+    String[] columnNames = {"Id", "Name", "Bar Code", "Price", "Stock"};
     DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
     for (ProductDTO product : searchResults) {
         Object[] rowData = {product.getProductId(), product.getProductName(), product.getBarcode(),
-                            product.getPrice(), product.getCategoryId(), product.getStockQuantity()};
+                            product.getPrice(), product.getStockQuantity()};
         defaultTableModel.addRow(rowData);
     }
     rSTableMetro1.setModel(defaultTableModel);
@@ -454,10 +469,10 @@ public class ProductUI extends javax.swing.JPanel {
      private void populateData() {
         Response res = POSFactory.getInstanceOfResponse();
         ArrayList<ProductDTO> products = controller.getProducts(res);
-        String[] columnNames = {"Id", "Name", "Bar Code","Price","Category Id","Stock"};
+        String[] columnNames = {"Id", "Name", "Bar Code","Price","Stock"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
         for (ProductDTO product : products) {
-            Object[] rowData = {product.getProductId(), product.getProductName(), product.getBarcode(),product.getPrice(),product.getCategoryId(),product.getStockQuantity()};
+            Object[] rowData = {product.getProductId(), product.getProductName(), product.getBarcode(),product.getPrice(),product.getStockQuantity()};
             defaultTableModel.addRow(rowData);
         }
         rSTableMetro1.setModel(defaultTableModel);
@@ -500,9 +515,11 @@ public class ProductUI extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ui.components.Button addBtn;
+    private ui.components.Button add;
     private javax.swing.JTextField barcode;
     private javax.swing.JComboBox<String> categoryDD;
+    private ui.components.Button clear;
+    private ui.components.Button delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -519,12 +536,10 @@ public class ProductUI extends javax.swing.JPanel {
     private javax.swing.JTextField price;
     private javax.swing.JComboBox<String> quantitytype;
     private rojerusan.RSTableMetro rSTableMetro1;
-    private ui.components.Button searchButton;
-    private ui.components.Button searchButton1;
-    private ui.components.Button searchButton2;
-    private ui.components.Button searchButton3;
+    private ui.components.Button search;
     private javax.swing.JTextField searchByNameField;
     private javax.swing.JTextField stock;
     private javax.swing.JComboBox<String> supplierDD;
+    private ui.components.Button update;
     // End of variables declaration//GEN-END:variables
 }

@@ -55,4 +55,30 @@ public class DBReader {
     ResultSet searchProductsByName(Connection connection, Response res, String query) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    ResultSet getCategoryByName(Connection connection, String query, String selectedItem) {
+        PreparedStatement statement = null;
+
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setString(1, selectedItem);
+            return statement.executeQuery();
+        } catch (Exception ex) {
+           
+        }
+        return null;
+    }
+
+    ResultSet getSupplierByName(Connection connection, String query, String string) {
+        PreparedStatement statement = null;
+
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setString(1, string);
+            return statement.executeQuery();
+        } catch (Exception ex) {
+           
+        }
+        return null;
+    }
 }

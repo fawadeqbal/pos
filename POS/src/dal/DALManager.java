@@ -366,4 +366,22 @@ public class DALManager implements IDALManager {
         return objMapper.searchProductsByName(resultSet);
     }
 
+   
+
+    public int getCategoryIdByName(String selectedItem) {
+        Connection connection = mySQL.getConnection();
+        String query = "SELECT id FROM category WHERE name=?";
+        ResultSet resultSet = objReader.getCategoryByName(connection ,query,selectedItem);
+        return objMapper.getCategoryByName(resultSet);
+   
+    }
+
+    public int getSupplierIdByName(String string) {
+    Connection connection = mySQL.getConnection();
+        String query = "SELECT id FROM suppliers WHERE name=?";
+        ResultSet resultSet = objReader.getSupplierByName(connection ,query,string);
+        return objMapper.getSupplierByName(resultSet);
+       
+    }
+
 }

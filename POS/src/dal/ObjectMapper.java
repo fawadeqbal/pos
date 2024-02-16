@@ -3,6 +3,8 @@ package dal;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dto.CategoryDTO;
 import model.dto.CustomerDTO;
 import model.dto.EmployeeDTO;
@@ -133,7 +135,7 @@ public class ObjectMapper {
     }
 
     ArrayList<ProductDTO> searchProductsByName(ResultSet resultSet) {
-         ArrayList<ProductDTO> productList = new ArrayList<>();
+        ArrayList<ProductDTO> productList = new ArrayList<>();
         try {
             while (resultSet.next()) {
                 ProductDTO product = new ProductDTO();
@@ -151,4 +153,27 @@ public class ObjectMapper {
         return productList;
     }
 
+     public int getCategoryByName(ResultSet resultSet) {
+        try {
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+                return 0; // Handle the SQLException gracefully by returning a default value or throwing an exception
+        }
+    }
+
+    int getSupplierByName(ResultSet resultSet) {
+        try {
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+                return 0; // Handle the SQLException gracefully by returning a default value or throwing an exception
+        }
+    }
 }

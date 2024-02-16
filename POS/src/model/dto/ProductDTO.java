@@ -15,6 +15,7 @@ public class ProductDTO {
     private double price;
     private double stockQuantity;
     private int categoryId;
+    private int supplierId;
     private String quantityType; // Enum can be used here for quantity type
 
     public ProductDTO() {
@@ -58,6 +59,14 @@ public class ProductDTO {
 
     public double getPrice() {
         return price;
+    }
+
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 
     public void setPrice(double price) {

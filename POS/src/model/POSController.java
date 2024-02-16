@@ -288,4 +288,13 @@ public class POSController implements IPOSController {
        return dalManagerObj.searchProductsByName(searchName,  res);
     }
 
+    public int getCategoryIdByName(String selectedItem) {
+        return dalManagerObj.getCategoryIdByName(selectedItem);
+    }
+
+    public int getSupplierIdByName(String string) {
+         return dalManagerObj.getSupplierIdByName(string);
+    
+    }
+
 }
