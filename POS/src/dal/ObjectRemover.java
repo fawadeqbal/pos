@@ -120,6 +120,28 @@ public class ObjectRemover {
     }
 
     void deleteProduct(ProductDTO product, Connection connection, Response response) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         PreparedStatement preparedStatement = null;
+        try {
+            String query = "DELETE FROM products WHERE id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, product.getProductId());
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                response.messagesList.add(new Message("Product Deleted successfully.",MessageType.Information));
+            } else {
+                response.messagesList.add(new Message("Product deletion failed",MessageType.Error));
+            }
+        } catch (SQLException e) {
+            response.messagesList.add(new Message(e.getMessage(),MessageType.Error));
+        } finally {
+            // Close the PreparedStatement
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    response.messagesList.add(new Message(e.getMessage(),MessageType.Error));
+                }
+            }
+        }
     }
 }

@@ -368,20 +368,33 @@ public class DALManager implements IDALManager {
 
    
 
-    public int getCategoryIdByName(String selectedItem) {
+    public CategoryDTO getCategoryByName(String selectedItem) {
         Connection connection = mySQL.getConnection();
-        String query = "SELECT id FROM category WHERE name=?";
+        String query = "SELECT * FROM category WHERE name=?";
         ResultSet resultSet = objReader.getCategoryByName(connection ,query,selectedItem);
         return objMapper.getCategoryByName(resultSet);
    
     }
 
-    public int getSupplierIdByName(String string) {
+    public SupplierDTO getSupplierByName(String string) {
     Connection connection = mySQL.getConnection();
-        String query = "SELECT id FROM suppliers WHERE name=?";
+        String query = "SELECT * FROM suppliers WHERE name=?";
         ResultSet resultSet = objReader.getSupplierByName(connection ,query,string);
         return objMapper.getSupplierByName(resultSet);
        
     }
 
+    public ProductDTO getProductById(int searchId, Response response) {
+      
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+             String query = "SELECT id FROM suppliers WHERE id=?";
+        ResultSet resultSet = objReader.getProductById(connection ,query,searchId);
+            return objMapper.getProductById(resultSet,response);
+        }
+        return null;
+    }
 }

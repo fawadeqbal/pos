@@ -153,27 +153,46 @@ public class ObjectMapper {
         return productList;
     }
 
-     public int getCategoryByName(ResultSet resultSet) {
+     public CategoryDTO getCategoryByName(ResultSet resultSet) {
         try {
             if (resultSet.next()) {
-                return resultSet.getInt(1);
-            } else {
-                return 0;
-            }
+                CategoryDTO cat=new CategoryDTO(resultSet.getInt(1),resultSet.getString(2));
+                return cat;
+            } 
         } catch (SQLException ex) {
-                return 0; // Handle the SQLException gracefully by returning a default value or throwing an exception
+               
         }
+        return null;
     }
 
-    int getSupplierByName(ResultSet resultSet) {
+    SupplierDTO getSupplierByName(ResultSet resultSet) {
         try {
             if (resultSet.next()) {
-                return resultSet.getInt(1);
-            } else {
-                return 0;
+                SupplierDTO cat=new SupplierDTO(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(2));
+                return cat;
+            } 
+        } catch (SQLException ex) {
+               
+        }
+        return null;
+    }
+
+    ProductDTO getProductById(ResultSet resultSet, Response response) {
+        try {
+            if(resultSet.next()){
+                ProductDTO product = new ProductDTO();
+                product.setProductId(resultSet.getInt(1));
+                product.setProductName(resultSet.getString(2));
+                product.setBarcode(resultSet.getString(3));
+                product.setPrice(resultSet.getDouble(4));
+                product.setStockQuantity(resultSet.getDouble(5));
+                product.setCategoryId(resultSet.getInt(6));
+                product.setQuantityType(resultSet.getString(9));
+                return product;
             }
         } catch (SQLException ex) {
-                return 0; // Handle the SQLException gracefully by returning a default value or throwing an exception
+          
         }
+        return null;
     }
 }

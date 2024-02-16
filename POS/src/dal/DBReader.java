@@ -81,4 +81,17 @@ public class DBReader {
         }
         return null;
     }
+
+    ResultSet getProductById(Connection connection, String query, int searchId) {
+         PreparedStatement statement = null;
+
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, searchId);
+            return statement.executeQuery();
+        } catch (Exception ex) {
+           
+        }
+        return null;
+    }
 }

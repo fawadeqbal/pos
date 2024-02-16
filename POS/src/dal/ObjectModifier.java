@@ -103,9 +103,34 @@ public class ObjectModifier {
         }
     }
 
-    void updateProduct(ProductDTO product, Connection connection, Response response) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+   void updateProduct(ProductDTO product, Connection connection, Response responseObj) {
+    try {
+        // Prepare the SQL query
+        String query = "UPDATE products SET name = ?, barcode = ?, price = ?, stock_quantity = ? WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        // Set the values for the parameters in the query
+        statement.setString(1, product.getProductName());
+        statement.setString(2, product.getBarcode());
+        statement.setDouble(3, product.getPrice());
+        statement.setDouble(4, product.getStockQuantity());
+        statement.setInt(5, product.getProductId());
+
+        // Execute the query
+        int rowsAffected = statement.executeUpdate();
+
+        if (rowsAffected > 0) {
+            // Product updated successfully
+            responseObj.messagesList.add(new Message("Product updated successfully.", MessageType.Information));
+        } else {
+            // Failed to update the product
+            responseObj.messagesList.add(new Message("Failed to update product.", MessageType.Error));
+        }
+    } catch (SQLException e) {
+        // Handle any SQL errors
+        responseObj.messagesList.add(new Message(e.getMessage(), MessageType.Error));
     }
+}
 
     void updateEmployee(EmployeeDTO employee, Connection connection, Response responseObj) {
          try {
