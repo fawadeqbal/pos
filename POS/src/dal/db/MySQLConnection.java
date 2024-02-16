@@ -14,19 +14,20 @@ import java.sql.SQLException;
 
 
 public class MySQLConnection implements IConnection {
-    private String url;
+    private String dbName;
     private String username;
     private String password;
 
-    public MySQLConnection(String url, String username, String password) {
-        this.url = url;
+    public MySQLConnection(String dbName, String username, String password) {
+        this.dbName = dbName;
         this.username = username;
         this.password = password;
     }
 
+    @Override
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection(url, username, password);
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName, username, password);
         } catch (SQLException ex) {
             System.out.println("Connection Probelm.");
         }

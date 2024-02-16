@@ -29,7 +29,7 @@ public class DALManager implements IDALManager {
     private ObjectModifier objModifier;
 
     public DALManager() {
-        this.mySQL = new MySQLConnection("jdbc:mysql://localhost:3306/pos", "root", "Admin123$");
+        this.mySQL = new MySQLConnection("pos", "root", "Admin123$");
         this.objMapper = POSFactory.getInstanceOfObjectMapper();
         this.objReader = POSFactory.getInstanceOfDBReader();
         this.objAdder = POSFactory.getInstanceOfObjectAdder();
