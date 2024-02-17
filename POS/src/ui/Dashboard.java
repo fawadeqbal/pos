@@ -300,7 +300,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void saleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saleBtnActionPerformed
         // TODO add your handling code here:
         mainPanel.removeAll();
-        mainPanel.add(new SalesUI(), BorderLayout.CENTER);
+        mainPanel.add(new SalesUI(this.controller), BorderLayout.CENTER);
         mainPanel.validate();
     }//GEN-LAST:event_saleBtnActionPerformed
 

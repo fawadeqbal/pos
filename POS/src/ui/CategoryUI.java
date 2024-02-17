@@ -36,14 +36,13 @@ public class CategoryUI extends javax.swing.JPanel {
         this.controller = controller;
         populateData();
         rSTableMetro1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
-            handleRowSelection();
-        }
-    }
-});
-
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    handleRowSelection();
+                }
+            }
+        });
 
         searchId.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -314,7 +313,6 @@ public class CategoryUI extends javax.swing.JPanel {
             Object cellValue = tableModel.getValueAt(rowIndex, 0);
 
             // Check if the cell value is an Integer
-           
         } else {
             // Handle the case where no row is selected
             // You might want to clear or handle the fields accordingly
