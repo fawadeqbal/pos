@@ -126,9 +126,9 @@ public final class HomeUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
         histogramPanel = new javax.swing.JPanel();
-        panelBarChart = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         rSTableMetro1 = new rojerusan.RSTableMetro();
+        panelBarChart = new javax.swing.JPanel();
         barChartPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -224,9 +224,6 @@ public final class HomeUI extends javax.swing.JFrame {
         histogramPanel.setOpaque(false);
         histogramPanel.setLayout(new java.awt.BorderLayout());
 
-        panelBarChart.setBackground(new java.awt.Color(102, 102, 102));
-        panelBarChart.setLayout(new java.awt.BorderLayout());
-
         rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -240,6 +237,11 @@ public final class HomeUI extends javax.swing.JFrame {
         rSTableMetro1.setColorFilasForeground2(new java.awt.Color(255, 0, 51));
         rSTableMetro1.setColorSelBackgound(new java.awt.Color(255, 0, 51));
         jScrollPane1.setViewportView(rSTableMetro1);
+
+        histogramPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        panelBarChart.setBackground(new java.awt.Color(102, 102, 102));
+        panelBarChart.setLayout(new java.awt.BorderLayout());
 
         barChartPanel.setForeground(new java.awt.Color(0, 153, 153));
         barChartPanel.setLayout(new java.awt.BorderLayout());
@@ -260,16 +262,19 @@ public final class HomeUI extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(histogramPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
+                    .addComponent(histogramPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addComponent(jButton1)))
-                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(barChartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(291, 291, 291)
+                        .addComponent(barChartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,16 +286,16 @@ public final class HomeUI extends javax.swing.JFrame {
                         .addGap(11, 11, 11))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(histogramPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(panelBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(barChartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(panelBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(barChartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(histogramPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                .addGap(329, 329, 329)
+                                .addComponent(jButton1)))))
                 .addGap(10, 10, 10))
         );
 

@@ -4,6 +4,10 @@
  */
 package ui;
 
+import javax.swing.ImageIcon;
+import ui.components.SearchOptinEvent;
+import ui.components.SearchOption;
+
 /**
  *
  * @author fawad
@@ -15,6 +19,7 @@ public class ReportsUI extends javax.swing.JPanel {
      */
     public ReportsUI() {
         initComponents();
+//        textFieldSearchOption2.addOption(new SearchOption("Search",new ImageIcon()));
     }
 
     /**

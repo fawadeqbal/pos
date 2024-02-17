@@ -2,6 +2,7 @@ package ui;
 
 import model.POSController;
 import java.awt.BorderLayout;
+import javax.swing.JFrame;
 
 import raven.glasspanepopup.GlassPanePopup;
 
@@ -17,11 +18,13 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard(POSController controller) {
         this.controller=controller;
         initComponents();
-        mainPanel.removeAll();
-        mainPanel.add(new CustomersUI(this.controller), BorderLayout.CENTER);
-        mainPanel.validate();
-        username.setText(POSController.objApplicationSession.getUser().getUsername());
-        GlassPanePopup.install(this);
+         setExtendedState(JFrame.MAXIMIZED_BOTH); // Set the JFrame to full size
+    setResizable(false); // Make the JFrame non-resizable
+    mainPanel.removeAll();
+    mainPanel.add(new CustomersUI(this.controller), BorderLayout.CENTER);
+    mainPanel.validate();
+    username.setText(POSController.objApplicationSession.getUser().getUsername());
+    GlassPanePopup.install(this);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,6 +48,7 @@ public class Dashboard extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         headerPanel.setBackground(new java.awt.Color(204, 0, 51));
         headerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -300,7 +304,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void saleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saleBtnActionPerformed
         // TODO add your handling code here:
         mainPanel.removeAll();
-        mainPanel.add(new SalesUI(this.controller), BorderLayout.CENTER);
+        mainPanel.add(new CartUI(this.controller), BorderLayout.CENTER);
         mainPanel.validate();
     }//GEN-LAST:event_saleBtnActionPerformed
 
