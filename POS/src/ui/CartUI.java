@@ -79,21 +79,24 @@ public class CartUI extends javax.swing.JPanel {
             populateData();
         }
     }
-    private void initializeCart(){
-        String[] columnNames = { "Name", "Price","Quantity","Total"};
+
+    private void initializeCart() {
+        String[] columnNames = {"Name", "Price", "Quantity", "Total"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
         cartTable.setModel(defaultTableModel);
     }
+
     private void updateTableData(ArrayList<ProductDTO> searchResults) {
-        String[] columnNames = { "Name",  "Price","Stock"};
+        String[] columnNames = {"Name", "Price", "Stock"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
         for (ProductDTO product : searchResults) {
-            Object[] rowData = { product.getProductName(),
-                product.getPrice(),product.getStockQuantity()};
+            Object[] rowData = {product.getProductName(),
+                product.getPrice(), product.getStockQuantity()};
             defaultTableModel.addRow(rowData);
         }
         productsTable.setModel(defaultTableModel);
     }
+
     private void handleRowSelection() {
         int rowIndex = productsTable.getSelectedRow();
 
@@ -101,7 +104,7 @@ public class CartUI extends javax.swing.JPanel {
             ProductDTO selectedProduct = productsList.get(rowIndex);
             // Now you can do whatever you want with the selected product
             // For example, you can display its details in a text field or perform some action
-         } else {
+        } else {
             // Handle the case where no row is selected
         }
     }
@@ -110,10 +113,10 @@ public class CartUI extends javax.swing.JPanel {
         Response res = POSFactory.getInstanceOfResponse();
         ArrayList<ProductDTO> products = controller.getProducts(res);
         productsList = products;
-        String[] columnNames = {"Name", "Price","Stock"};
+        String[] columnNames = {"Name", "Price", "Stock"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
         for (ProductDTO product : products) {
-            Object[] rowData = { product.getProductName(),  product.getPrice(),product.getStockQuantity()};
+            Object[] rowData = {product.getProductName(), product.getPrice(), product.getStockQuantity()};
             defaultTableModel.addRow(rowData);
         }
         productsTable.setModel(defaultTableModel);
@@ -538,102 +541,101 @@ public class CartUI extends javax.swing.JPanel {
 
     private void addToCartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartBtnActionPerformed
         // TODO add your handling code here:
-         // Get the selected row index from the products table
-         // Calculate the total of the items in the cart
+        // Get the selected row index from the products table
+        // Calculate the total of the items in the cart
 
+        int selectedRowIndex = productsTable.getSelectedRow();
 
-    int selectedRowIndex = productsTable.getSelectedRow();
-    
-    // Check if a row is selected
-    if (selectedRowIndex != -1) {
-        // Get the selected product from the products list using the selected row index
-        ProductDTO selectedProduct = productsList.get(selectedRowIndex);
-        
-        // Add the selected product to the cart table
-        DefaultTableModel cartTableModel = (DefaultTableModel) cartTable.getModel();
-        Object[] rowData = {selectedProduct.getProductName(), selectedProduct.getPrice(),quantity.getText(), selectedProduct.getPrice()*Integer.parseInt(quantity.getText())};
-        cartTableModel.addRow(rowData);
-    } else {
-        // If no row is selected in the products table, display an error message
-        JOptionPane.showMessageDialog(this, "Please select a product to add to the cart.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    double total = 0.0;
-for (int i = 0; i < cartTable.getRowCount(); i++) {
-    // Extract price and quantity of each item
-    double price = Double.parseDouble(cartTable.getValueAt(i, 2).toString());
-    int quantity = Integer.parseInt(cartTable.getValueAt(i, 3).toString());
-    
-    // Calculate total for this item and add it to the overall total
-    double itemTotal = price * quantity;
-    total += itemTotal;
-}
+        // Check if a row is selected
+        if (selectedRowIndex != -1) {
+            // Get the selected product from the products list using the selected row index
+            ProductDTO selectedProduct = productsList.get(selectedRowIndex);
+
+            // Add the selected product to the cart table
+            DefaultTableModel cartTableModel = (DefaultTableModel) cartTable.getModel();
+            Object[] rowData = {selectedProduct.getProductName(), selectedProduct.getPrice(), quantity.getText(), selectedProduct.getPrice() * Integer.parseInt(quantity.getText())};
+            cartTableModel.addRow(rowData);
+        } else {
+            // If no row is selected in the products table, display an error message
+            JOptionPane.showMessageDialog(this, "Please select a product to add to the cart.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        double total = 0.0;
+        for (int i = 0; i < cartTable.getRowCount(); i++) {
+            // Extract price and quantity of each item
+            double price = Double.parseDouble(cartTable.getValueAt(i, 2).toString());
+            int quantity = Integer.parseInt(cartTable.getValueAt(i, 3).toString());
+
+            // Calculate total for this item and add it to the overall total
+            double itemTotal = price * quantity;
+            total += itemTotal;
+        }
 
 // Set the calculated total to the total label
-totalofcart.setText(String.valueOf(total));
+        totalofcart.setText(String.valueOf(total));
     }//GEN-LAST:event_addToCartBtnActionPerformed
 
     private void quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_quantityActionPerformed
 
     private void create_invoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_invoiceActionPerformed
         // TODO add your handling code here:
-       StringBuilder invoice = new StringBuilder();
-    invoice.append("--------------------------------------------------------------\n");
-    invoice.append("|                          INVOICE                           |\n");
-    invoice.append("--------------------------------------------------------------\n\n");
-    
-    // Add invoice details
-    invoice.append("Invoice Number: ").append(generateInvoiceNumber()).append("\n");
-    invoice.append("Date: ").append(getCurrentDateTime()).append("\n");
-    invoice.append("Customer: [Customer Name]\n\n"); // You can replace [Customer Name] with actual customer name
-    
-    // Add table header
-    invoice.append(String.format("| %-30s | %-10s | %-10s | %-10s |\n", "Product Name", "Quantity", "Unit Price", "Total Price"));
-    invoice.append("--------------------------------------------------------------\n");
-    
-    // Iterate over each row in the cart table to add product details to the invoice
-    for (int i = 0; i < cartTable.getRowCount(); i++) {
-        String productName = cartTable.getValueAt(i, 0).toString();
-        String quantity = cartTable.getValueAt(i, 3).toString();
-        String unitPrice = cartTable.getValueAt(i, 2).toString();
-        double totalUnitPrice = Double.parseDouble(unitPrice) * Integer.parseInt(quantity);
-        invoice.append(String.format("| %-30s | %-10s | %-10s | %-10s |\n", productName, quantity, unitPrice, totalUnitPrice));
-    }
-    
-    // Add total to the invoice
-    invoice.append("--------------------------------------------------------------\n");
-    invoice.append(String.format("| %-50s | %-10s |\n", "Total:", totalofcart.getText()));
-    invoice.append("--------------------------------------------------------------\n");
-    
-    // Display the invoice
-    JOptionPane.showMessageDialog(this, "<html><pre>" + invoice.toString() + "</pre></html>", "Invoice", JOptionPane.INFORMATION_MESSAGE);
-    
-    // Optionally, you can reset the cart after creating the invoice
-    resetCart();
+        StringBuilder invoice = new StringBuilder();
+        invoice.append("--------------------------------------------------------------\n");
+        invoice.append("|                          INVOICE                           |\n");
+        invoice.append("--------------------------------------------------------------\n\n");
+
+        // Add invoice details
+        invoice.append("Invoice Number: ").append(generateInvoiceNumber()).append("\n");
+        invoice.append("Date: ").append(getCurrentDateTime()).append("\n");
+        invoice.append("Customer: [Customer Name]\n\n"); // You can replace [Customer Name] with actual customer name
+
+        // Add table header
+        invoice.append(String.format("| %-30s | %-10s | %-10s | %-10s |\n", "Product Name", "Quantity", "Unit Price", "Total Price"));
+        invoice.append("--------------------------------------------------------------\n");
+
+        // Iterate over each row in the cart table to add product details to the invoice
+        for (int i = 0; i < cartTable.getRowCount(); i++) {
+            String productName = cartTable.getValueAt(i, 0).toString();
+            String quantity = cartTable.getValueAt(i, 3).toString();
+            String unitPrice = cartTable.getValueAt(i, 2).toString();
+            double totalUnitPrice = Double.parseDouble(unitPrice) * Integer.parseInt(quantity);
+            invoice.append(String.format("| %-30s | %-10s | %-10s | %-10s |\n", productName, quantity, unitPrice, totalUnitPrice));
+        }
+
+        // Add total to the invoice
+        invoice.append("--------------------------------------------------------------\n");
+        invoice.append(String.format("| %-50s | %-10s |\n", "Total:", totalofcart.getText()));
+        invoice.append("--------------------------------------------------------------\n");
+
+        // Display the invoice
+        JOptionPane.showMessageDialog(this, "<html><pre>" + invoice.toString() + "</pre></html>", "Invoice", JOptionPane.INFORMATION_MESSAGE);
+
+        // Optionally, you can reset the cart after creating the invoice
+        resetCart();
     }//GEN-LAST:event_create_invoiceActionPerformed
-private String generateInvoiceNumber() {
-    // Generate a random invoice number or use a sequence generator
-    return "INV-" + Math.round(Math.random() * 10000);
-}
+    private String generateInvoiceNumber() {
+        // Generate a random invoice number or use a sequence generator
+        return "INV-" + Math.round(Math.random() * 10000);
+    }
 
-private String getCurrentDateTime() {
-    // Get the current date and time in a desired format
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    return now.format(formatter);
-}
+    private String getCurrentDateTime() {
+        // Get the current date and time in a desired format
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return now.format(formatter);
+    }
 
-private void resetCart() {
-    DefaultTableModel cartTableModel = (DefaultTableModel) cartTable.getModel();
-    cartTableModel.setRowCount(0); // Clear cart table
-    totalofcart.setText("0"); // Reset total
-}
-private void populateDataIntoCustomers() {
+    private void resetCart() {
+        DefaultTableModel cartTableModel = (DefaultTableModel) cartTable.getModel();
+        cartTableModel.setRowCount(0); // Clear cart table
+        totalofcart.setText("0"); // Reset total
+    }
+
+    private void populateDataIntoCustomers() {
         Response res = POSFactory.getInstanceOfResponse();
-       
-        
+
         String[] columnNames = {"Name", "Phone No"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
         for (CustomerDTO customer : controller.getCustomers(res)) {
