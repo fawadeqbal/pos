@@ -191,22 +191,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="customerBtn" pref="32" max="32767" attributes="0"/>
+                      <Component id="customerBtn" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="supplierBtn" pref="32" max="32767" attributes="0"/>
+                      <Component id="supplierBtn" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="employeeBtn" pref="32" max="32767" attributes="0"/>
+                      <Component id="employeeBtn" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="productBtn" pref="32" max="32767" attributes="0"/>
+                      <Component id="productBtn" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Component id="categoryBtn" pref="32" max="32767" attributes="0"/>
+                      <Component id="categoryBtn" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="saleBtn" pref="32" max="32767" attributes="0"/>
+                      <Component id="saleBtn" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="invoiceBtn" pref="32" max="32767" attributes="0"/>
+                      <Component id="invoiceBtn" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="reportsBtn" pref="32" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="reportsBtn" min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace pref="95" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
