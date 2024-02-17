@@ -61,8 +61,8 @@ public class ProductUI extends javax.swing.JPanel {
                 String searchName = searchByNameField.getText();
                 if (!searchName.isEmpty()) {
                     Response res = POSFactory.getInstanceOfResponse();
-                    ArrayList<ProductDTO> searchResults = controller.searchProductsByName(searchName, res);
-                    updateTableData(searchResults);
+                    productsList= controller.searchProductsByName(searchName, res);
+                    updateTableData(productsList);
                 } else {
                     // If search field is empty, show all products
                     populateData();
@@ -549,11 +549,10 @@ public class ProductUI extends javax.swing.JPanel {
 
     private void populateData() {
         Response res = POSFactory.getInstanceOfResponse();
-        ArrayList<ProductDTO> products = controller.getProducts(res);
-        productsList = products;
+        productsList = controller.getProducts(res);
         String[] columnNames = {"Id", "Name", "Bar Code", "Price", "Stock"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
-        for (ProductDTO product : products) {
+        for (ProductDTO product : productsList) {
             Object[] rowData = {product.getProductId(), product.getProductName(), product.getBarcode(), product.getPrice(), product.getStockQuantity()};
             defaultTableModel.addRow(rowData);
         }

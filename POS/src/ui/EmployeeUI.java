@@ -179,6 +179,11 @@ public class EmployeeUI extends javax.swing.JPanel {
         jPanel3.add(jLabel3, gridBagConstraints);
 
         searchId.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        searchId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchIdKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -339,6 +344,11 @@ public class EmployeeUI extends javax.swing.JPanel {
             nameField.setText("");
             phoneNoField.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void searchIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchIdKeyReleased
+        // TODO add your handling code here:
+        System.out.println("sellll");
+    }//GEN-LAST:event_searchIdKeyReleased
     
     private void handleRowSelection() {
         int rowIndex = rSTableMetro1.getSelectedRow();

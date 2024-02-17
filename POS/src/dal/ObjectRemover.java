@@ -3,6 +3,7 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import model.dto.CategoryDTO;
 import model.dto.CustomerDTO;
 import model.dto.EmployeeDTO;
 import model.dto.Message;
@@ -130,6 +131,32 @@ public class ObjectRemover {
                 response.messagesList.add(new Message("Product Deleted successfully.",MessageType.Information));
             } else {
                 response.messagesList.add(new Message("Product deletion failed",MessageType.Error));
+            }
+        } catch (SQLException e) {
+            response.messagesList.add(new Message(e.getMessage(),MessageType.Error));
+        } finally {
+            // Close the PreparedStatement
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    response.messagesList.add(new Message(e.getMessage(),MessageType.Error));
+                }
+            }
+        }
+    }
+
+    void deleteCategory(CategoryDTO category, Connection connection, Response response) {
+         PreparedStatement preparedStatement = null;
+        try {
+            String query = "DELETE FROM category WHERE id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, category.getId());
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                response.messagesList.add(new Message("Category Deleted successfully.",MessageType.Information));
+            } else {
+                response.messagesList.add(new Message("Category deletion failed",MessageType.Error));
             }
         } catch (SQLException e) {
             response.messagesList.add(new Message(e.getMessage(),MessageType.Error));

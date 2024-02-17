@@ -323,11 +323,25 @@ public class DALManager implements IDALManager {
     }
 
     public void deleteCategory(CategoryDTO category, Response response) {
-
+         Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objRemover.deleteCategory(category, connection, response);
+            mySQL.closeConnection(connection);
+        }
     }
 
     public void updateCategory(CategoryDTO category, Response response) {
-
+        Connection connection = mySQL.getConnection();
+        if (connection == null) {
+            Message message = new Message("Database Connection issue please contact customer services.", MessageType.Exception);
+            response.messagesList.add((message));
+        } else {
+            objModifier.updateCategory(category, connection, response);
+            mySQL.closeConnection(connection);
+        }
     }
 
     public ArrayList<CategoryDTO> getCategories(Response res) {
