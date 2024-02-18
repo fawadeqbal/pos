@@ -4,7 +4,6 @@
  */
 package ui;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,10 +15,10 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import model.POSController;
 import model.POSFactory;
-import model.dto.CategoryDTO;
 import model.dto.CustomerDTO;
 import model.dto.ProductDTO;
 import model.dto.Response;
+import model.dto.SaleDTO;
 
 /**
  *
@@ -27,16 +26,21 @@ import model.dto.Response;
  */
 public class CartUI extends javax.swing.JPanel {
 
-    POSController controller;
-    ArrayList<ProductDTO> productsList;
-
+    private POSController controller;
+    private ArrayList<ProductDTO> productsList;
+    private ArrayList<CustomerDTO> customersList;
+    SaleDTO sale;
     /**
      * Creates new form SalesUI
+     * @param controller
      */
     public CartUI(POSController controller) {
         this.controller = controller;
         initComponents();
         populateData();
+        customersList = this.controller.getCustomers(new Response());
+        updateTableDataIntoCustomers(customersList);
+        sale=new SaleDTO();
         productsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -67,13 +71,15 @@ public class CartUI extends javax.swing.JPanel {
         });
 
     }
+    
+    
 
     private void handleSearchTextChanged() {
         String searchText = searchByname.getText();
         if (!searchText.isEmpty()) {
             Response res = POSFactory.getInstanceOfResponse();
-            ArrayList<ProductDTO> searchResults = controller.searchProductsByName(searchText, res);
-            updateTableData(searchResults);
+            productsList = controller.searchProductsByName(searchText, res);
+            updateTableData(productsList);
         } else {
             // If search field is empty, show all categories
             populateData();
@@ -97,25 +103,27 @@ public class CartUI extends javax.swing.JPanel {
         productsTable.setModel(defaultTableModel);
     }
 
-    private void handleRowSelection() {
-        int rowIndex = productsTable.getSelectedRow();
-
-        if (rowIndex != -1) {
-            ProductDTO selectedProduct = productsList.get(rowIndex);
-            // Now you can do whatever you want with the selected product
-            // For example, you can display its details in a text field or perform some action
-        } else {
-            // Handle the case where no row is selected
+    private void updateTableDataIntoCustomers(ArrayList<CustomerDTO> searchResults) {
+        String[] columnNames = {"Id", "Name"};
+        DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
+        for (CustomerDTO customer : searchResults) {
+            Object[] rowData = {customer.getId(), customer.getName()};
+            defaultTableModel.addRow(rowData);
         }
+        customerTable.setModel(defaultTableModel);
+    }
+
+    private void handleRowSelection() {
+
     }
 
     private void populateData() {
         Response res = POSFactory.getInstanceOfResponse();
-        ArrayList<ProductDTO> products = controller.getProducts(res);
-        productsList = products;
+        productsList = controller.getProducts(res);
+
         String[] columnNames = {"Name", "Price", "Stock"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
-        for (ProductDTO product : products) {
+        for (ProductDTO product : productsList) {
             Object[] rowData = {product.getProductName(), product.getPrice(), product.getStockQuantity()};
             defaultTableModel.addRow(rowData);
         }
@@ -141,7 +149,7 @@ public class CartUI extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        removeItem = new ui.components.Button();
         productList = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         productsTable = new rojerusan.RSTableMetro();
@@ -163,6 +171,10 @@ public class CartUI extends javax.swing.JPanel {
         customerTable = new rojerusan.RSTableMetro();
         searchCustomerByName = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
         footer = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -208,13 +220,25 @@ public class CartUI extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         cartTable.setAltoHead(20);
         cartTable.setColorBackgoundHead(new java.awt.Color(255, 0, 51));
+        cartTable.setColorBordeFilas(new java.awt.Color(255, 0, 51));
+        cartTable.setColorBordeHead(new java.awt.Color(255, 0, 51));
+        cartTable.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         cartTable.setColorFilasForeground1(new java.awt.Color(255, 0, 51));
         cartTable.setColorFilasForeground2(new java.awt.Color(255, 0, 51));
         cartTable.setColorSelBackgound(new java.awt.Color(255, 0, 51));
         cartTable.setFuenteHead(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        cartTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(cartTable);
 
         jPanel5.setBackground(new java.awt.Color(255, 0, 51));
@@ -235,31 +259,38 @@ public class CartUI extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addComponent(jLabel9)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 0, 51));
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel7.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setText("Remove Item");
+        removeItem.setForeground(new java.awt.Color(255, 0, 51));
+        removeItem.setText("Remove Item");
+        removeItem.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        removeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeItemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(removeItem, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(removeItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cartListLayout = new javax.swing.GroupLayout(cartList);
@@ -276,7 +307,7 @@ public class CartUI extends javax.swing.JPanel {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -292,13 +323,25 @@ public class CartUI extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         productsTable.setAltoHead(20);
         productsTable.setColorBackgoundHead(new java.awt.Color(255, 0, 51));
+        productsTable.setColorBordeFilas(new java.awt.Color(255, 0, 51));
+        productsTable.setColorBordeHead(new java.awt.Color(255, 0, 51));
+        productsTable.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         productsTable.setColorFilasForeground1(new java.awt.Color(255, 0, 51));
         productsTable.setColorFilasForeground2(new java.awt.Color(255, 0, 51));
         productsTable.setColorSelBackgound(new java.awt.Color(255, 0, 51));
         productsTable.setFuenteHead(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        productsTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(productsTable);
 
         jPanel6.setBackground(new java.awt.Color(255, 0, 51));
@@ -317,7 +360,7 @@ public class CartUI extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addComponent(searchByname, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,7 +407,7 @@ public class CartUI extends javax.swing.JPanel {
                 .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(addToCartBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,9 +426,7 @@ public class CartUI extends javax.swing.JPanel {
             productListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(productListLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         productListLayout.setVerticalGroup(
             productListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,20 +465,46 @@ public class CartUI extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         customerTable.setAltoHead(20);
+        customerTable.setColorBackgoundHead(new java.awt.Color(255, 0, 51));
+        customerTable.setColorBordeFilas(new java.awt.Color(255, 0, 51));
+        customerTable.setColorBordeHead(new java.awt.Color(255, 0, 51));
+        customerTable.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        customerTable.setColorFilasForeground1(new java.awt.Color(255, 0, 51));
+        customerTable.setColorFilasForeground2(new java.awt.Color(255, 0, 51));
+        customerTable.setColorSelBackgound(new java.awt.Color(255, 0, 51));
         customerTable.setFuenteHead(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        customerTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(customerTable);
 
+        searchCustomerByName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchCustomerByNameKeyPressed(evt);
+            }
+        });
+
         jLabel8.setText("Search Customer");
+
+        jLabel3.setText("Paid Amount:");
+
+        jLabel10.setText("Pending Amount:");
 
         javax.swing.GroupLayout controlsLayout = new javax.swing.GroupLayout(controls);
         controls.setLayout(controlsLayout);
         controlsLayout.setHorizontalGroup(
             controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlsLayout.createSequentialGroup()
-                .addGroup(controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(controlsLayout.createSequentialGroup()
                             .addComponent(create_invoice)
                             .addGap(18, 18, 18)
@@ -454,17 +521,35 @@ public class CartUI extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(discountInTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, controlsLayout.createSequentialGroup()
+                    .addGroup(controlsLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchCustomerByName)))
+                        .addComponent(searchCustomerByName))
+                    .addGroup(controlsLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGroup(controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlsLayout.setVerticalGroup(
             controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlsLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addGroup(controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(controlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchCustomerByName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -540,45 +625,32 @@ public class CartUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addToCartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartBtnActionPerformed
-        // TODO add your handling code here:
-        // Get the selected row index from the products table
-        // Calculate the total of the items in the cart
-
         int selectedRowIndex = productsTable.getSelectedRow();
-
-        // Check if a row is selected
         if (selectedRowIndex != -1) {
-            // Get the selected product from the products list using the selected row index
             ProductDTO selectedProduct = productsList.get(selectedRowIndex);
-
-            // Add the selected product to the cart table
             DefaultTableModel cartTableModel = (DefaultTableModel) cartTable.getModel();
             Object[] rowData = {selectedProduct.getProductName(), selectedProduct.getPrice(), quantity.getText(), selectedProduct.getPrice() * Integer.parseInt(quantity.getText())};
             cartTableModel.addRow(rowData);
         } else {
-            // If no row is selected in the products table, display an error message
             JOptionPane.showMessageDialog(this, "Please select a product to add to the cart.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        double total = 0.0;
-        for (int i = 0; i < cartTable.getRowCount(); i++) {
-            // Extract price and quantity of each item
-            double price = Double.parseDouble(cartTable.getValueAt(i, 2).toString());
-            int quantity = Integer.parseInt(cartTable.getValueAt(i, 3).toString());
-
-            // Calculate total for this item and add it to the overall total
-            double itemTotal = price * quantity;
-            total += itemTotal;
-        }
-
-// Set the calculated total to the total label
-        totalofcart.setText(String.valueOf(total));
+        calculateTotal();
+        productsTable.clearSelection();
     }//GEN-LAST:event_addToCartBtnActionPerformed
 
     private void quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_quantityActionPerformed
-
+    private void calculateTotal() {
+        double total = 0.0;
+        for (int i = 0; i < cartTable.getRowCount(); i++) {
+            // Extract price and quantity of each item
+            double totalPrice = Double.parseDouble(cartTable.getValueAt(i, 3).toString());
+            total += totalPrice;
+        }
+        totalofcart.setText(String.valueOf(total));
+    }
     private void create_invoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_invoiceActionPerformed
         // TODO add your handling code here:
         StringBuilder invoice = new StringBuilder();
@@ -589,7 +661,7 @@ public class CartUI extends javax.swing.JPanel {
         // Add invoice details
         invoice.append("Invoice Number: ").append(generateInvoiceNumber()).append("\n");
         invoice.append("Date: ").append(getCurrentDateTime()).append("\n");
-        invoice.append("Customer: [Customer Name]\n\n"); // You can replace [Customer Name] with actual customer name
+        invoice.append("Customer: "+sale.getCustomer().getName()+"\n\n"); // You can replace [Customer Name] with actual customer name
 
         // Add table header
         invoice.append(String.format("| %-30s | %-10s | %-10s | %-10s |\n", "Product Name", "Quantity", "Unit Price", "Total Price"));
@@ -600,7 +672,7 @@ public class CartUI extends javax.swing.JPanel {
             String productName = cartTable.getValueAt(i, 0).toString();
             String quantity = cartTable.getValueAt(i, 3).toString();
             String unitPrice = cartTable.getValueAt(i, 2).toString();
-            double totalUnitPrice = Double.parseDouble(unitPrice) * Integer.parseInt(quantity);
+            double totalUnitPrice = Double.parseDouble(unitPrice) * Double.parseDouble(quantity);
             invoice.append(String.format("| %-30s | %-10s | %-10s | %-10s |\n", productName, quantity, unitPrice, totalUnitPrice));
         }
 
@@ -614,7 +686,28 @@ public class CartUI extends javax.swing.JPanel {
 
         // Optionally, you can reset the cart after creating the invoice
         resetCart();
+        customerTable.clearSelection();
     }//GEN-LAST:event_create_invoiceActionPerformed
+
+    private void removeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeItemActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = cartTable.getSelectedRow();
+        // Check if a row is selected
+        if (selectedRowIndex != -1) {
+            DefaultTableModel cartTableModel = (DefaultTableModel) cartTable.getModel();
+            cartTableModel.removeRow(selectedRowIndex);
+            calculateTotal();
+        }
+    }//GEN-LAST:event_removeItemActionPerformed
+
+    private void searchCustomerByNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchCustomerByNameKeyPressed
+        // TODO add your handling code here:
+        int rowIndex=customerTable.getSelectedRow();
+        if(rowIndex!=-1){
+            CustomerDTO customer=customersList.get(rowIndex);
+            sale.setCustomer(customer);
+        }
+    }//GEN-LAST:event_searchCustomerByNameKeyPressed
     private String generateInvoiceNumber() {
         // Generate a random invoice number or use a sequence generator
         return "INV-" + Math.round(Math.random() * 10000);
@@ -638,7 +731,8 @@ public class CartUI extends javax.swing.JPanel {
 
         String[] columnNames = {"Name", "Phone No"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(null, columnNames);
-        for (CustomerDTO customer : controller.getCustomers(res)) {
+        customersList=controller.getCustomers(res);
+        for (CustomerDTO customer : customersList) {
             Object[] rowData = {customer.getName(), customer.getPhoneNumber()};
             defaultTableModel.addRow(rowData);
         }
@@ -656,10 +750,11 @@ public class CartUI extends javax.swing.JPanel {
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -674,9 +769,12 @@ public class CartUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel productList;
     private rojerusan.RSTableMetro productsTable;
     private javax.swing.JTextField quantity;
+    private ui.components.Button removeItem;
     private javax.swing.JTextField searchByname;
     private javax.swing.JTextField searchCustomerByName;
     private javax.swing.JLabel totalofcart;
