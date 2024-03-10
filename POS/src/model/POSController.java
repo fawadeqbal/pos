@@ -4,8 +4,6 @@ package model;
 import dal.DALManager;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import model.ApplicationSession;
-import model.POSFactory;
 import model.dto.CategoryDTO;
 import model.dto.CustomerDTO;
 import model.dto.Response;
@@ -312,5 +310,7 @@ public class POSController implements IPOSController {
     return dalManagerObj.searchCustomersByName(searchName,  res);
         
     }
+
+    
 
 }

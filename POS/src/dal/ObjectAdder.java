@@ -54,7 +54,7 @@ public class ObjectAdder {
             try {
                 connection.close();
             } catch (SQLException ex) {
-                Logger.getLogger(ObjectAdder.class.getName()).log(Level.SEVERE, null, ex);
+               
             }
         }
     }

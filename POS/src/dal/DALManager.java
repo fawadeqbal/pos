@@ -437,6 +437,5 @@ public class DALManager implements IDALManager {
         String query = "SELECT * FROM customers WHERE name LIKE '%" + searchName + "%'";
         ResultSet resultSet = objReader.getRecords(connection, res, query);
         return objMapper.getCustomers(resultSet);
-          
     }
 }

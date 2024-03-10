@@ -15,6 +15,7 @@ import model.POSController;
 import model.POSFactory;
 import model.dto.CustomerDTO;
 import model.dto.Response;
+import ui.components.AddUpdateCustomerDialog;
 
 /**
  *
@@ -58,24 +59,17 @@ public class CustomersUI extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         rSTableMetro1 = new rojerusan.RSTableMetro();
-        jPanel6 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        phoneNoField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        nameField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         searchByName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         saveCustomer = new ui.components.Button();
         delete = new ui.components.Button();
         update = new ui.components.Button();
-        update1 = new ui.components.Button();
+        jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -116,103 +110,20 @@ public class CustomersUI extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel6.setPreferredSize(new java.awt.Dimension(782, 120));
-        jPanel6.setLayout(new java.awt.BorderLayout());
-
-        jPanel3.setLayout(new java.awt.GridBagLayout());
-
-        phoneNoField.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        phoneNoField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneNoFieldActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 76;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
-        jPanel3.add(phoneNoField, gridBagConstraints);
-
-        jLabel4.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel4.setText("Phone No:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 33, 0, 0);
-        jPanel3.add(jLabel4, gridBagConstraints);
-
-        nameField.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                nameFieldKeyReleased(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 74;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
-        jPanel3.add(nameField, gridBagConstraints);
-
-        jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel3.setText("Name:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 114, 0, 0);
-        jPanel3.add(jLabel3, gridBagConstraints);
-
         searchByName.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        searchByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchByNameActionPerformed(evt);
+            }
+        });
         searchByName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchByNameKeyReleased(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 66;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 12, 0, 0);
-        jPanel3.add(searchByName, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel2.setText("Search by Name:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 101, 0, 0);
-        jPanel3.add(jLabel2, gridBagConstraints);
-
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Customer Information");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 19;
-        gridBagConstraints.ipadx = 595;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        jPanel3.add(jLabel1, gridBagConstraints);
 
         saveCustomer.setBackground(new java.awt.Color(255, 0, 51));
         saveCustomer.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,14 +133,6 @@ public class CustomersUI extends javax.swing.JPanel {
                 saveCustomerActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 35;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 60, 2, 0);
-        jPanel3.add(saveCustomer, gridBagConstraints);
 
         delete.setBackground(new java.awt.Color(255, 0, 51));
         delete.setForeground(new java.awt.Color(255, 255, 255));
@@ -239,15 +142,6 @@ public class CustomersUI extends javax.swing.JPanel {
                 deleteActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 18;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 6, 2, 0);
-        jPanel3.add(delete, gridBagConstraints);
 
         update.setBackground(new java.awt.Color(255, 0, 51));
         update.setForeground(new java.awt.Color(255, 255, 255));
@@ -257,54 +151,60 @@ public class CustomersUI extends javax.swing.JPanel {
                 updateActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 6, 2, 0);
-        jPanel3.add(update, gridBagConstraints);
 
-        update1.setBackground(new java.awt.Color(255, 0, 51));
-        update1.setForeground(new java.awt.Color(255, 255, 255));
-        update1.setText("Clear");
-        update1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                update1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 25;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 6, 2, 0);
-        jPanel3.add(update1, gridBagConstraints);
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(saveCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(searchByName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
+        );
 
-        jPanel6.add(jPanel3, java.awt.BorderLayout.CENTER);
+        jPanel2.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        jPanel2.add(jPanel6, java.awt.BorderLayout.PAGE_START);
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Customer Information");
+        jPanel2.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void phoneNoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNoFieldActionPerformed
-
     private void saveCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCustomerActionPerformed
         // TODO add your handling code here:
+        AddUpdateCustomerDialog d=new AddUpdateCustomerDialog("Add Customer");
+        d.setVisible(true);
         CustomerDTO customer = new CustomerDTO();
-        customer.setName(nameField.getText());
-        customer.setPhoneNumber(phoneNoField.getText());
+//        customer.setName(nameField.getText());
+//        customer.setPhoneNumber(phoneNoField.getText());
         Response res = this.controller.saveCustomer(customer);
         if (res.isSuccessfull()) {
             searchByName.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
+//            nameField.setText("");
+//            phoneNoField.setText("");
             populateData();
         }
         CommonHandler.handleResponse(res);
@@ -322,8 +222,8 @@ public class CustomersUI extends javax.swing.JPanel {
 
         if (res.isSuccessfull()) {
             searchByName.setText("");
-            nameField.setText("");
-            phoneNoField.setText("");
+//            nameField.setText("");
+//            phoneNoField.setText("");
             populateData();
         }
         CommonHandler.handleResponse(res);
@@ -337,8 +237,8 @@ public class CustomersUI extends javax.swing.JPanel {
         if (rowIndex != -1) {
             customer.setId(this.customersList.get(rowIndex).getId());
         }
-        customer.setName(nameField.getText());
-        customer.setPhoneNumber(phoneNoField.getText());
+//        customer.setName(nameField.getText());
+//        customer.setPhoneNumber(phoneNoField.getText());
         Response response = this.controller.updateCustomer(customer);
         if (response.isSuccessfull()) {
             clear();
@@ -349,24 +249,18 @@ public class CustomersUI extends javax.swing.JPanel {
 
     private void clear() {
         searchByName.setText("");
-        nameField.setText("");
-        phoneNoField.setText("");
+//        nameField.setText("");
+//        phoneNoField.setText("");
         populateData();
     }
-    private void update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update1ActionPerformed
-        // TODO add your handling code here:
-        clear();
-    }//GEN-LAST:event_update1ActionPerformed
-
-    private void nameFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyReleased
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_nameFieldKeyReleased
-
     private void searchByNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchByNameKeyReleased
         // TODO add your handling code here:
           updateSearchResults();
     }//GEN-LAST:event_searchByNameKeyReleased
+
+    private void searchByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchByNameActionPerformed
     private void updateSearchResults() {
         String searchText = searchByName.getText();
         Response res = POSFactory.getInstanceOfResponse();
@@ -379,8 +273,8 @@ public class CustomersUI extends javax.swing.JPanel {
 
         if (rowIndex != -1) {
             CustomerDTO c = this.customersList.get(rowIndex);
-            nameField.setText(c.getName());
-            phoneNoField.setText(c.getPhoneNumber());
+//            nameField.setText(c.getName());
+//            phoneNoField.setText(c.getPhoneNumber());
         } else {
             // Handle the case where no row is selected
             // You might want to clear or handle the fields accordingly
@@ -405,18 +299,12 @@ public class CustomersUI extends javax.swing.JPanel {
     private ui.components.Button delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nameField;
-    private javax.swing.JTextField phoneNoField;
     private rojerusan.RSTableMetro rSTableMetro1;
     private ui.components.Button saveCustomer;
     private javax.swing.JTextField searchByName;
     private ui.components.Button update;
-    private ui.components.Button update1;
     // End of variables declaration//GEN-END:variables
 }

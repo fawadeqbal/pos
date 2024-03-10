@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dal.db;
 
 /**
@@ -14,9 +10,9 @@ import java.sql.SQLException;
 
 
 public class MySQLConnection implements IConnection {
-    private String dbName;
-    private String username;
-    private String password;
+    private final String dbName;
+    private final String username;
+    private final String password;
 
     public MySQLConnection(String dbName, String username, String password) {
         this.dbName = dbName;
@@ -29,7 +25,7 @@ public class MySQLConnection implements IConnection {
         try {
             return DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName, username, password);
         } catch (SQLException ex) {
-            System.out.println("Connection Probelm.");
+            System.out.println("Connection Probelm."+ex.getLocalizedMessage());
         }
         return null;
     }
